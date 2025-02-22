@@ -1,6 +1,9 @@
 package src;
 
 import javax.swing.JPanel;
+
+import src.tiles.TileManager;
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Dimension;
@@ -20,6 +23,7 @@ public class Game extends JPanel implements Runnable {
 
     Thread gameThread;
     int FPS = 60;
+    TileManager tileM = new TileManager(this);
 
     public Game() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -73,7 +77,7 @@ public class Game extends JPanel implements Runnable {
 
         Graphics2D g2 = (Graphics2D)g;
 
-        // tileM.draw(g2);
+        tileM.draw(g2);
 
         g2.dispose();
     }
