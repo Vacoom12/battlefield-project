@@ -8,14 +8,17 @@ import java.awt.Graphics2D;
 import javax.imageio.ImageIO;
 
 import src.Game;
+import src.KeyHandler;
 
 public class TileManager {
     Game game;
+    KeyHandler keyH;
     public Tile[] tile;
     public int mapTilePos[][];
 
-    public TileManager(Game game) {
+    public TileManager(Game game, KeyHandler keyH) {
         this.game = game;
+        this.keyH = keyH;
 
         tile = new Tile[10];
         mapTilePos = new int[game.maxScreenCol][game.maxScreenRow];
@@ -88,5 +91,19 @@ public class TileManager {
                 worldRow++;
             }
         }
+    }
+
+    public void update() {
+        if (keyH.mouseClicked) {
+            int tileX = keyH.mouseX / game.tileSize;
+            int tileY = keyH.mouseY / game.tileSize;
+            System.out.println(tileX + " : " + tileY);
+    
+            if (tileX >= 0 && tileX < game.maxWorldCol && tileY >= 0 && tileY < game.maxWorldRow) {
+                mapTilePos[tileX][tileY] = 2;
+            }
+        }
+
+        keyH.mouseClicked = false;
     }
 }

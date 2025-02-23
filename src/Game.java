@@ -23,13 +23,15 @@ public class Game extends JPanel implements Runnable {
 
     Thread gameThread;
     int FPS = 60;
-    TileManager tileM = new TileManager(this);
+    KeyHandler keyH = new KeyHandler();
+    TileManager tileM = new TileManager(this, keyH);
 
     public Game() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
-        // this.addKeyListener();
+        this.addKeyListener(keyH);
+        this.addMouseListener(keyH);
         this.setFocusable(true);
     }
 
@@ -55,8 +57,8 @@ public class Game extends JPanel implements Runnable {
             lastTime = currentTime;
 
             if (delta >= 1) {
-                // update();
-                // repaint();
+                update();
+                repaint();
                 delta--;
                 // drawCount++;
             }
@@ -69,7 +71,7 @@ public class Game extends JPanel implements Runnable {
     }
 
     public void update() {
-        
+        tileM.update();
     }
 
     public void paintComponent(Graphics g) {
