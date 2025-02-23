@@ -97,9 +97,9 @@ public class TileManager {
         if (keyH.mouseClicked) {
             int tileX = keyH.mouseX / game.tileSize;
             int tileY = keyH.mouseY / game.tileSize;
-            System.out.println(tileX + " : " + tileY);
+            // System.out.println(tileX + " : " + tileY);
     
-            if (tileX >= 0 && tileX < game.maxWorldCol && tileY >= 0 && tileY < game.maxWorldRow) {
+            if (tileX >= 0 && tileX < game.maxWorldCol && tileY >= 0 && tileY < game.maxWorldRow && mapTilePos[tileX][tileY] == 1) {
                 mapTilePos[tileX][tileY] = 2;
             }
         }
