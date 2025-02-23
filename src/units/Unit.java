@@ -16,7 +16,8 @@ public class Unit {
     }
 
     public void takeDamage() {
-        if (health > 0) health--;
+        if (health > 0) 
+            health--;
     }
 
     public boolean isDestroyed() {

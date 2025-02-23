@@ -19,6 +19,9 @@ public class TileManager {
 
         tile = new Tile[10];
         mapTilePos = new int[game.maxScreenCol][game.maxScreenRow];
+
+        getTileImage();
+        loadMap();
     }
 
     public void getTileImage() {
@@ -30,7 +33,10 @@ public class TileManager {
             tile[1].image = ImageIO.read(getClass().getResourceAsStream("/asset/tiles/sand.png"));
 
             tile[2] = new Tile();
-            tile[2].image = ImageIO.read(getClass().getResourceAsStream("/asset/tiles/water.png"));
+            tile[2].image = ImageIO.read(getClass().getResourceAsStream("/asset/tiles/earth.png"));
+
+            tile[3] = new Tile();
+            tile[3].image = ImageIO.read(getClass().getResourceAsStream("/asset/tiles/tree.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
