@@ -3,6 +3,7 @@ package src;
 import javax.swing.JPanel;
 
 import src.tiles.TileManager;
+import src.units.Unit;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -25,6 +26,9 @@ public class Game extends JPanel implements Runnable {
     int FPS = 60;
     KeyHandler keyH = new KeyHandler();
     TileManager tileM = new TileManager(this, keyH);
+    public AssetSetter aSetter = new AssetSetter(this);
+    
+    public Unit obj[] = new Unit[10];
 
     public Game() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -33,6 +37,11 @@ public class Game extends JPanel implements Runnable {
         this.addKeyListener(keyH);
         this.addMouseListener(keyH);
         this.setFocusable(true);
+    }
+
+    public void setupGame() {
+        aSetter.setObject();
+        System.out.println("SETTED OBJECT");
     }
 
     public void startGameThread() {
@@ -80,6 +89,12 @@ public class Game extends JPanel implements Runnable {
         Graphics2D g2 = (Graphics2D)g;
 
         tileM.draw(g2);
+
+        for (int i = 0; i < obj.length; i++) {
+            if (obj[i] != null) {
+                obj[i].draw(g2, this);
+            }
+        }
 
         g2.dispose();
     }
