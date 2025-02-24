@@ -23,6 +23,9 @@ public class ActionHandler implements ActionListener {
             case "lookChest": gm.ev1.lookChest();break;
             case "talkChest": gm.ev1.talkChest();break;
             case "openChest": gm.ev1.openChest();break;
+            //Change Scene
+            case "goScene1": gm.sChanger.changeScence(1);break;
+            case "goScene2": gm.sChanger.changeScence(2);break;
         }
     }
 	
