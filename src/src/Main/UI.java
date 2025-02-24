@@ -113,6 +113,6 @@ public class UI {
         createObjct(1,70,140,150,150,path+"/asset/res/player150x150.png","Look","Talk","Attack","lookPlayer","talkPlayer","attackPlayer");
         createObjct(1,300,230,100,67,path+"/asset/res/chest100x67.png","Look","Talk","Open","lookChest","talkChest","openChest");
         createObjct(1,570,500,150,150,path+"/asset/res/start.png","Look","Talk","Open","lookChest","talkChest","openChest");
-
+        //hello
     }
 }
