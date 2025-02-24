@@ -34,15 +34,15 @@ public class UI {
         window.getContentPane().setBackground(Color.black);
         window.setLayout(null);
 
-        messageText = new JTextArea("Start");
-        messageText.setBounds(570, 500, 65, 30);
-        messageText.setBackground(Color.black);
-        messageText.setForeground(Color.white);
-        messageText.setEditable(false);
-        messageText.setLineWrap(true);
-        messageText.setWrapStyleWord(true);
-        messageText.setFont(new Font("Book Antiqua", Font.PLAIN,26));
-        window.add(messageText);
+        // messageText = new JTextArea("Start");
+        // messageText.setBounds(570, 500, 65, 30);
+        // messageText.setBackground(Color.black);
+        // messageText.setForeground(Color.white);
+        // messageText.setEditable(false);
+        // messageText.setLineWrap(true);
+        // messageText.setWrapStyleWord(true);
+        // messageText.setFont(new Font("Book Antiqua", Font.PLAIN,26));
+        // window.add(messageText);
     }
     public void  createBackground(int bgNum, String bgFileName){
         bgPanel[bgNum] = new JPanel();
@@ -112,6 +112,7 @@ public class UI {
         createObjct(1,450,100,200,200,path+"/asset/res/hut200x200.png","Look","Talk","Rest","lookHut","talkHut","restHut");
         createObjct(1,70,140,150,150,path+"/asset/res/player150x150.png","Look","Talk","Attack","lookPlayer","talkPlayer","attackPlayer");
         createObjct(1,300,230,100,67,path+"/asset/res/chest100x67.png","Look","Talk","Open","lookChest","talkChest","openChest");
+        createObjct(1,570,500,150,150,path+"/asset/res/start.png","Look","Talk","Open","lookChest","talkChest","openChest");
 
     }
 }
