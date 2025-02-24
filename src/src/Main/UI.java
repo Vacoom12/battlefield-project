@@ -1,10 +1,8 @@
 package Main;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.MouseListener;
 import java.nio.file.Paths;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -114,5 +112,6 @@ public class UI {
         createObjct(1,300,230,100,67,path+"/asset/res/chest100x67.png","Look","Talk","Open","lookChest","talkChest","openChest");
         createObjct(1,570,500,150,150,path+"/asset/res/start.png","Look","Talk","Open","lookChest","talkChest","openChest");
         //hello
+        //Hiiiii
     }
 }
