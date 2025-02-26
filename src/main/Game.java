@@ -39,7 +39,7 @@ public class Game extends JPanel implements Runnable {
     }
 
     public void setupGame() {
-        aSetter.setObject();
+        aSetter.setObject1();
     }
 
     public void startGameThread() {
