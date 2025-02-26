@@ -3,12 +3,12 @@ package src.units;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-public class Soldier extends Unit {
-    public Soldier() {
-        name = "Soldier";
+public class Turret extends Unit {
+    public Turret() {
+        name = "Turret";
 
         try {
-            image = ImageIO.read(getClass().getResourceAsStream("/src/res/sprites/soldier.png"));
+            image = ImageIO.read(getClass().getResourceAsStream("/src/res/sprites/turret.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

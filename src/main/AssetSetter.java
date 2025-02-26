@@ -1,4 +1,4 @@
-package src;
+package src.main;
 
 import src.units.*;
 
@@ -13,5 +13,9 @@ public class AssetSetter {
         game.obj[0] = new Soldier();
         game.obj[0].x = 15 * game.tileSize;
         game.obj[0].y = 9 * game.tileSize; 
+
+        game.obj[1] = new Turret();
+        game.obj[1].x = 20 * game.tileSize;
+        game.obj[1].y = 10 * game.tileSize; 
     }
 }

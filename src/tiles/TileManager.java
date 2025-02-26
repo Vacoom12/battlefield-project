@@ -7,8 +7,8 @@ import java.io.InputStreamReader;
 import java.awt.Graphics2D;
 import javax.imageio.ImageIO;
 
-import src.Game;
-import src.KeyHandler;
+import src.main.Game;
+import src.main.KeyHandler;
 
 public class TileManager {
     Game game;
@@ -30,23 +30,23 @@ public class TileManager {
     public void getTileImage() {
         try {
             tile[0] = new Tile();
-            tile[0].image = ImageIO.read(getClass().getResourceAsStream("/asset/tiles/grass.png"));
+            tile[0].image = ImageIO.read(getClass().getResourceAsStream("/src/res/tiles/grass.png"));
 
             tile[1] = new Tile();
-            tile[1].image = ImageIO.read(getClass().getResourceAsStream("/asset/tiles/sand.png"));
+            tile[1].image = ImageIO.read(getClass().getResourceAsStream("/src/res/tiles/sand.png"));
 
             tile[2] = new Tile();
-            tile[2].image = ImageIO.read(getClass().getResourceAsStream("/asset/tiles/earth.png"));
+            tile[2].image = ImageIO.read(getClass().getResourceAsStream("/src/res/tiles/earth.png"));
 
             tile[3] = new Tile();
-            tile[3].image = ImageIO.read(getClass().getResourceAsStream("/asset/tiles/tree.png"));
+            tile[3].image = ImageIO.read(getClass().getResourceAsStream("/src/res/tiles/tree.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
     public void loadMap() {
         try {
-            InputStream is = getClass().getResourceAsStream("/asset/maps/battlefield.txt");
+            InputStream is = getClass().getResourceAsStream("/src/res/maps/battlefield.txt");
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
             int col = 0;

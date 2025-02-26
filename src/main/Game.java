@@ -1,7 +1,6 @@
-package src;
+package src.main;
 
 import javax.swing.JPanel;
-
 import src.tiles.TileManager;
 import src.units.Unit;
 
@@ -92,6 +91,7 @@ public class Game extends JPanel implements Runnable {
 
         for (int i = 0; i < obj.length; i++) {
             if (obj[i] != null) {
+                System.out.println("draw obj " + i);
                 obj[i].draw(g2, this);
             }
         }
