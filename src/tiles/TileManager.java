@@ -1,7 +1,6 @@
 package src.tiles;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.awt.Graphics2D;
@@ -9,6 +8,7 @@ import javax.imageio.ImageIO;
 
 import src.main.Game;
 import src.main.KeyHandler;
+import src.main.UtilityTool;
 
 public class TileManager {
     Game game;
@@ -28,22 +28,24 @@ public class TileManager {
     }
 
     public void getTileImage() {
+        setup(0, "grass");
+        setup(1, "sand");
+        setup(2, "earth");
+        setup(3, "tree");
+    }
+
+    public void setup(int index, String imageName) {
+        UtilityTool uTool = new UtilityTool();
+
         try {
-            tile[0] = new Tile();
-            tile[0].image = ImageIO.read(getClass().getResourceAsStream("/src/res/tiles/grass.png"));
-
-            tile[1] = new Tile();
-            tile[1].image = ImageIO.read(getClass().getResourceAsStream("/src/res/tiles/sand.png"));
-
-            tile[2] = new Tile();
-            tile[2].image = ImageIO.read(getClass().getResourceAsStream("/src/res/tiles/earth.png"));
-
-            tile[3] = new Tile();
-            tile[3].image = ImageIO.read(getClass().getResourceAsStream("/src/res/tiles/tree.png"));
-        } catch (IOException e) {
+            tile[index] = new Tile();
+            tile[index].image = ImageIO.read(getClass().getResourceAsStream("/src/res/tiles/" + imageName + ".png"));
+            tile[index].image = uTool.scaleImage(tile[index].image, game.tileSize , game.tileSize);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     public void loadMap() {
         try {
             InputStream is = getClass().getResourceAsStream("/src/res/maps/battlefield.txt");
@@ -83,7 +85,7 @@ public class TileManager {
             int worldX = worldCol * game.tileSize;
             int worldY = worldRow * game.tileSize;
 
-            g2.drawImage(tile[tileNum].image, worldX, worldY, game.tileSize, game.tileSize, null); 
+            g2.drawImage(tile[tileNum].image, worldX, worldY, null); 
             worldCol++;
                 
             if (worldCol == game.maxWorldCol) {
@@ -97,7 +99,6 @@ public class TileManager {
         if (keyH.mouseClicked) {
             int tileX = keyH.mouseX / game.tileSize;
             int tileY = keyH.mouseY / game.tileSize;
-            // System.out.println(tileX + " : " + tileY);
     
             if (tileX >= 0 && tileX < game.maxWorldCol && tileY >= 0 && tileY < game.maxWorldRow && mapTilePos[tileX][tileY] == 1) {
                 mapTilePos[tileX][tileY] = 2;

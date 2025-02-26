@@ -5,16 +5,16 @@ import src.main.Game;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-public class Turret extends Unit {
+public class Tank extends Unit {
     Game game;
 
-    public Turret(Game game) {
-        name = "Turret";
-        sizeX = 2;
+    public Tank(Game game) {
+        name = "Tank";
+        sizeX = 3;
         sizeY = 2;
 
         try {
-            image = ImageIO.read(getClass().getResourceAsStream("/src/res/sprites/turret.png"));
+            image = ImageIO.read(getClass().getResourceAsStream("/src/res/sprites/tank.png"));
             uTool.scaleImage(image, game.tileSize, game.tileSize);
         } catch (IOException e) {
             e.printStackTrace();
