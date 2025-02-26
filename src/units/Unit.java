@@ -9,7 +9,7 @@ import src.main.UtilityTool;
 
 public class Unit {
     public int x, y;
-    protected int sizeX, sizeY; 
+    public int sizeX, sizeY; 
     protected int health;      
     protected String name;
     public BufferedImage image;  
