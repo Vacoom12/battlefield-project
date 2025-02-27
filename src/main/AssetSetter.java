@@ -2,7 +2,7 @@ package src.main;
 
 import java.util.ArrayList;
 
-import src.units.*;
+import src.units.*;    
 
 public class AssetSetter {
     Game game;
@@ -14,7 +14,7 @@ public class AssetSetter {
 
     public int RandomPosX(int sizeX) {
          //12-26
-        return (int) (Math.random() * (15 - sizeX)) + 12;
+        return (int) (Math.random() * (16 - sizeX)) + 12;
     }
 
     public int RandomPosY(int sizeY) {
@@ -47,7 +47,7 @@ public class AssetSetter {
 
         unit.x = x;
         unit.y = y;
-        System.out.println("x: " + x / game.tileSize + " y: " + y / game.tileSize);
+        // System.out.println("x: " + x / game.tileSize + " y: " + y / game.tileSize);
         occupiedTiles.add(new int[]{x, y, sizeX, sizeY}); // Store the occupied area
     }
 
@@ -72,25 +72,11 @@ public class AssetSetter {
 
         game.obj[6] = new HeavyTank(game);
         placeUnit(game.obj[6], game.obj[6].sizeX, game.obj[6].sizeY);
+
+        // for (int[] arr : occupiedTiles) {
+        //     System.out.println(arr[0] + " : " + arr[1] + " : " + arr[2] + " : " + arr[3]);
+        // }
     }
-
-    // public void setObject () {
-    //     game.obj[0] = new Soldier(game);
-    //     game.obj[0].x = 13 * game.tileSize;
-    //     game.obj[0].y = 9 * game.tileSize; 
-
-    //     game.obj[1] = new Turret(game);
-    //     game.obj[1].x = 15 * game.tileSize;
-    //     game.obj[1].y = 8 * game.tileSize; 
-
-    //     game.obj[2] = new Tank(game);
-    //     game.obj[2].x = 18 * game.tileSize;
-    //     game.obj[2].y = 8 * game.tileSize; 
-
-    //     game.obj[3] = new HeavyTank(game);
-    //     game.obj[3].x = 22 * game.tileSize;
-    //     game.obj[3].y = 8 * game.tileSize; 
-    // }
 
     // public void setObject1 () {
     //     game.obj[0] = new Soldier(game);
