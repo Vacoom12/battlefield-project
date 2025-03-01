@@ -13,6 +13,7 @@ public class Turret extends Unit {
         sizeX = 2;
         sizeY = 2;
         health = sizeX * sizeY;
+        isDestroy = false;
 
         try {
             image = ImageIO.read(getClass().getResourceAsStream("/src/res/sprites/turret.png"));

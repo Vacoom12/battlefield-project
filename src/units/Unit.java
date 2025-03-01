@@ -12,6 +12,7 @@ public class Unit {
     public int sizeX, sizeY; 
     public int health;      
     public String name;
+    public boolean isDestroy;
     public BufferedImage image;  
     UtilityTool uTool = new UtilityTool();
 

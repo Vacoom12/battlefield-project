@@ -13,6 +13,7 @@ public class HeavyTank extends Unit {
         sizeX = 4;
         sizeY = 2;
         health = sizeX * sizeY;
+        isDestroy = false;
 
         try {
             image = ImageIO.read(getClass().getResourceAsStream("/src/res/sprites/heavyTank.png"));

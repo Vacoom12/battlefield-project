@@ -10,6 +10,7 @@ import src.main.Game;
 import src.main.KeyHandler;
 import src.main.UtilityTool;
 import src.main.AssetSetter;
+import src.units.*;
 
 public class TileManager {
     Game game;
@@ -107,14 +108,42 @@ public class TileManager {
                 mapTilePos[tileX][tileY] = 2;
                 int unitX, unitY;
 
-                for (int[] arr : aSetter.occupiedUnits) {
-                    unitX = arr[0] / game.tileSize;
-                    unitY = arr[1] / game.tileSize;
+                // for (int[] arr : aSetter.occupiedUnits) {
+                //     unitX = arr[0] / game.tileSize;
+                //     unitY = arr[1] / game.tileSize;
+                //     unitSizeX = arr[2];
+                //     unitSizeY = arr[3];
 
-                    if (tileX >= unitX && tileX < unitX + arr[2] &&
-                        tileY >= unitY && tileY < unitY + arr[3]) {
-                        arr[4]--;
-                        System.out.println(arr[4]);
+                //     if (tileX >= unitX && tileX < unitX + unitSizeX &&
+                //         tileY >= unitY && tileY < unitY + unitSizeY) {
+                //         arr[4]--;
+                //         if (arr[4] == 0) {
+
+                //         }
+                //         break;
+                //     }
+                // }
+
+                // for (int i = 0; i < obj.length; i++) {
+                //     if (obj[i] != null) {
+                //         obj[i].draw(g2, this);
+                //     }
+                // }
+
+                for (Unit obj : game.obj) {
+                    if (obj != null) {     
+                        unitX = obj.x / game.tileSize;
+                        unitY = obj.y / game.tileSize;
+
+                        if (tileX >= unitX && tileX < unitX + obj.sizeX &&
+                            tileY >= unitY && tileY < unitY + obj.sizeY) {
+                            obj.health--;
+                            System.out.println(obj.health);
+                            if (obj.health == 0) {
+                                obj.isDestroy = true;
+                                System.out.println("Unit Destroyed!");
+                            }
+
                         break;
                     }
                 }
@@ -122,7 +151,6 @@ public class TileManager {
         }
 
         keyH.mouseClicked = false;
+        }
     }
-
-
 }
