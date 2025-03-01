@@ -9,16 +9,19 @@ import javax.imageio.ImageIO;
 import src.main.Game;
 import src.main.KeyHandler;
 import src.main.UtilityTool;
+import src.main.AssetSetter;
 
 public class TileManager {
     Game game;
+    AssetSetter aSetter;
     KeyHandler keyH;
     public Tile[] tile;
     public int mapTilePos[][];
 
-    public TileManager(Game game, KeyHandler keyH) {
+    public TileManager(Game game, KeyHandler keyH, AssetSetter aSetter) {
         this.game = game;
         this.keyH = keyH;
+        this.aSetter = aSetter;
 
         tile = new Tile[10];
         mapTilePos = new int[game.maxScreenCol][game.maxScreenRow];
@@ -100,11 +103,26 @@ public class TileManager {
             int tileX = keyH.mouseX / game.tileSize;
             int tileY = keyH.mouseY / game.tileSize;
     
-            if (tileX >= 0 && tileX < game.maxWorldCol && tileY >= 0 && tileY < game.maxWorldRow && mapTilePos[tileX][tileY] == 1) {
+            if (tileX >= 0 && tileX < game.maxWorldCol && tileY >= 0 && tileY < game.maxWorldRow && mapTilePos[tileX][tileY] == 1 && mapTilePos[tileX][tileY] != 2) {
                 mapTilePos[tileX][tileY] = 2;
+                int unitX, unitY;
+
+                for (int[] arr : aSetter.occupiedUnits) {
+                    unitX = arr[0] / game.tileSize;
+                    unitY = arr[1] / game.tileSize;
+
+                    if (tileX >= unitX && tileX < unitX + arr[2] &&
+                        tileY >= unitY && tileY < unitY + arr[3]) {
+                        arr[4]--;
+                        System.out.println(arr[4]);
+                        break;
+                    }
+                }
             }
         }
 
         keyH.mouseClicked = false;
     }
+
+
 }

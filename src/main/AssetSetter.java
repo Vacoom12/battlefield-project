@@ -6,7 +6,7 @@ import src.units.*;
 
 public class AssetSetter {
     Game game;
-    ArrayList<int[]> occupiedTiles = new ArrayList<>();
+    public ArrayList<int[]> occupiedUnits = new ArrayList<>();
 
     public AssetSetter(Game game) {
         this.game = game;
@@ -23,7 +23,7 @@ public class AssetSetter {
     }
 
     public boolean isOverlap(int newX, int newY, int width, int height) {
-        for (int[] occupied : occupiedTiles) {
+        for (int[] occupied : occupiedUnits) {
             int ox = occupied[0], oy = occupied[1], ow = occupied[2], oh = occupied[3];
 
             // Check if new unit overlaps with an existing one
@@ -47,8 +47,7 @@ public class AssetSetter {
 
         unit.x = x;
         unit.y = y;
-        // System.out.println("x: " + x / game.tileSize + " y: " + y / game.tileSize);
-        occupiedTiles.add(new int[]{x, y, sizeX, sizeY}); // Store the occupied area
+        occupiedUnits.add(new int[]{x, y, sizeX, sizeY, unit.health}); // Store the occupied unit infos
     }
 
     public void setObject1() {
@@ -77,34 +76,4 @@ public class AssetSetter {
         //     System.out.println(arr[0] + " : " + arr[1] + " : " + arr[2] + " : " + arr[3]);
         // }
     }
-
-    // public void setObject1 () {
-    //     game.obj[0] = new Soldier(game);
-    //     game.obj[0].x = RandomPosX() * game.tileSize;
-    //     game.obj[0].y = RandomPosY() * game.tileSize; 
-
-    //     game.obj[1] = new Soldier(game);
-    //     game.obj[1].x = RandomPosX() * game.tileSize;
-    //     game.obj[1].y = RandomPosY() * game.tileSize; 
-
-    //     game.obj[2] = new Soldier(game);
-    //     game.obj[2].x = RandomPosX() * game.tileSize;
-    //     game.obj[2].y = RandomPosY() * game.tileSize; 
-
-    //     game.obj[3] = new Turret(game);
-    //     game.obj[3].x = RandomPosX() * game.tileSize;
-    //     game.obj[3].y = RandomPosY() * game.tileSize; 
-
-    //     game.obj[4] = new Turret(game);
-    //     game.obj[4].x = RandomPosX() * game.tileSize;
-    //     game.obj[4].y = RandomPosY() * game.tileSize; 
-
-    //     game.obj[5] = new Tank(game);
-    //     game.obj[5].x = RandomPosX() * game.tileSize;
-    //     game.obj[5].y = RandomPosY() * game.tileSize; 
-
-    //     game.obj[6] = new HeavyTank(game);
-    //     game.obj[6].x = RandomPosX() * game.tileSize;
-    //     game.obj[6].y = RandomPosY() * game.tileSize; 
-    // }
 }

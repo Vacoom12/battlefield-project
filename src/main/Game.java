@@ -24,8 +24,8 @@ public class Game extends JPanel implements Runnable {
     Thread gameThread;
     int FPS = 60;
     KeyHandler keyH = new KeyHandler();
-    TileManager tileM = new TileManager(this, keyH);
     public AssetSetter aSetter = new AssetSetter(this);
+    TileManager tileM = new TileManager(this, keyH, aSetter);
     
     public Unit obj[] = new Unit[10];
 

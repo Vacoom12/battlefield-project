@@ -10,8 +10,8 @@ import src.main.UtilityTool;
 public class Unit {
     public int x, y;
     public int sizeX, sizeY; 
-    protected int health;      
-    protected String name;
+    public int health;      
+    public String name;
     public BufferedImage image;  
     UtilityTool uTool = new UtilityTool();
 

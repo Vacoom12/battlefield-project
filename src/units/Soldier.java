@@ -12,6 +12,7 @@ public class Soldier extends Unit {
         name = "Soldier";
         sizeX = 1;
         sizeY = 1;
+        health = sizeX * sizeY;
 
         try {
             image = ImageIO.read(getClass().getResourceAsStream("/src/res/sprites/soldier.png"));
