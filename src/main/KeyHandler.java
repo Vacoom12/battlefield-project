@@ -1,13 +1,20 @@
 package src.main;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class KeyHandler implements KeyListener, MouseListener {
+public class KeyHandler implements KeyListener, MouseListener, ActionListener {
+    Game g;
     public int mouseX, mouseY;
     public boolean mouseClicked = false;
+
+    public KeyHandler(Game g){
+        this.g = g;
+    }
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -41,6 +48,9 @@ public class KeyHandler implements KeyListener, MouseListener {
         // mouseX = e.getX();
         // mouseY = e.getY();
         // System.out.println("Mouse Clicked at (" + e.getX() + ", " + e.getY() + ")");
+        if(g.gameState == g.titleState){
+            
+        }
     }
 
     @Override
@@ -63,5 +73,10 @@ public class KeyHandler implements KeyListener, MouseListener {
     @Override
     public void mouseExited(MouseEvent e) {
 
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        
     }
 }

@@ -20,26 +20,31 @@ public class Game extends JPanel implements Runnable {
     public final int screenHeight = tileSize * maxScreenRow;
     public final int maxWorldCol = maxScreenCol;
     public final int maxWorldRow = maxScreenRow;
-
-    Thread gameThread;
-    int FPS = 60;
-    KeyHandler keyH = new KeyHandler();
-    public AssetSetter aSetter = new AssetSetter(this);
-    TileManager tileM = new TileManager(this, keyH, aSetter);
+    public int gameState;
+    public final int playState = 1;
+    public final int titleState = 0;
     
-    public Unit obj[] = new Unit[10];
-
-    public Game() {
-        this.setPreferredSize(new Dimension(screenWidth, screenHeight));
-        this.setBackground(Color.black);
-        this.setDoubleBuffered(true);
-        this.addKeyListener(keyH);
-        this.addMouseListener(keyH);
-        this.setFocusable(true);
-    }
-
-    public void setupGame() {
-        aSetter.setObject1();
+        Thread gameThread;
+        int FPS = 60;
+        KeyHandler keyH = new KeyHandler(this);
+        public AssetSetter aSetter = new AssetSetter(this);
+        TileManager tileM = new TileManager(this, keyH, aSetter);
+        UI ui = new UI(this);
+        
+        public Unit obj[] = new Unit[10];
+    
+        public Game() {
+            this.setPreferredSize(new Dimension(screenWidth, screenHeight));
+            this.setBackground(Color.black);
+            this.setDoubleBuffered(true);
+            this.addKeyListener(keyH);
+            this.addMouseListener(keyH);
+            this.setFocusable(true);
+        }
+    
+        public void setupGame() {
+            aSetter.setObject1();
+            gameState = titleState;
     }
 
     public void startGameThread() {
@@ -78,7 +83,13 @@ public class Game extends JPanel implements Runnable {
     }
 
     public void update() {
-        tileM.update();
+        if(gameState == playState){
+            tileM.update();
+        }
+        if(gameState == titleState){
+
+        }
+       
     }
 
     public void paintComponent(Graphics g) {
@@ -86,11 +97,16 @@ public class Game extends JPanel implements Runnable {
 
         Graphics2D g2 = (Graphics2D)g;
 
-        tileM.draw(g2);
+        if(gameState == titleState){
+            ui.draw(g2);
+        }
+        else{
+            tileM.draw(g2);
 
-        for (int i = 0; i < obj.length; i++) {
-            if (obj[i] != null && obj[i].isDestroy) {
-                obj[i].draw(g2, this);
+            for (int i = 0; i < obj.length; i++) {
+                if (obj[i] != null && obj[i].isDestroy) {
+                    obj[i].draw(g2, this);
+                }
             }
         }
 
