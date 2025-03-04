@@ -1,6 +1,7 @@
 package src.main;
 
 import javax.swing.JPanel;
+
 import src.tiles.TileManager;
 import src.units.Unit;
 
@@ -20,6 +21,7 @@ public class Game extends JPanel implements Runnable {
     public final int screenHeight = tileSize * maxScreenRow;
     public final int maxWorldCol = maxScreenCol;
     public final int maxWorldRow = maxScreenRow;
+
     public int gameState;
     public final int playState = 1;
     public final int titleState = 0;
