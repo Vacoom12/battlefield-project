@@ -11,6 +11,8 @@ public class KeyHandler implements KeyListener, MouseListener, ActionListener {
     Game g;
     public int mouseX, mouseY;
     public boolean mouseClicked = false;
+    public boolean canShoot = true;
+    public int shootCooldown = 0;
 
     public KeyHandler(Game g){
         this.g = g;

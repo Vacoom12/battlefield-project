@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 
-import javax.swing.JButton;
-
 public class UI {
     Game g;
     Graphics2D g2;

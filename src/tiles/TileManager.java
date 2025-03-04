@@ -100,35 +100,20 @@ public class TileManager {
     }
 
     public void update() {
-        if (keyH.mouseClicked) {
+        System.out.println(keyH.shootCooldown);
+        keyH.shootCooldown++;;
+        if (keyH.shootCooldown > 180) {
+            if (!keyH.canShoot) keyH.canShoot = true;
+            keyH.shootCooldown = 0;
+        }
+
+        if (keyH.mouseClicked && keyH.canShoot) {
             int tileX = keyH.mouseX / game.tileSize;
             int tileY = keyH.mouseY / game.tileSize;
     
             if (tileX >= 0 && tileX < game.maxWorldCol && tileY >= 0 && tileY < game.maxWorldRow && mapTilePos[tileX][tileY] == 1 && mapTilePos[tileX][tileY] != 2) {
                 mapTilePos[tileX][tileY] = 2;
                 int unitX, unitY;
-
-                // for (int[] arr : aSetter.occupiedUnits) {
-                //     unitX = arr[0] / game.tileSize;
-                //     unitY = arr[1] / game.tileSize;
-                //     unitSizeX = arr[2];
-                //     unitSizeY = arr[3];
-
-                //     if (tileX >= unitX && tileX < unitX + unitSizeX &&
-                //         tileY >= unitY && tileY < unitY + unitSizeY) {
-                //         arr[4]--;
-                //         if (arr[4] == 0) {
-
-                //         }
-                //         break;
-                //     }
-                // }
-
-                // for (int i = 0; i < obj.length; i++) {
-                //     if (obj[i] != null) {
-                //         obj[i].draw(g2, this);
-                //     }
-                // }
 
                 for (Unit obj : game.obj) {
                     if (obj != null) {     
@@ -144,13 +129,15 @@ public class TileManager {
                                 System.out.println("Unit Destroyed!");
                             }
 
-                        break;
+                            break;
+                        }
                     }
                 }
             }
-        }
 
-        keyH.mouseClicked = false;
+            keyH.shootCooldown = 0;
+            keyH.canShoot = false;
+            keyH.mouseClicked = false;
         }
     }
 }
