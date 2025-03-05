@@ -1,14 +1,12 @@
 package src.main;
 
-import javax.swing.JPanel;
-
-import src.tiles.TileManager;
-import src.units.Unit;
-
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Dimension;
-import java.awt.Color;
+import javax.swing.JPanel;
+import src.tiles.TileManager;
+import src.units.Unit;
 
 public class Game extends JPanel implements Runnable {
     final int originalTileSize = 16;
@@ -28,7 +26,7 @@ public class Game extends JPanel implements Runnable {
     
         Thread gameThread;
         int FPS = 60;
-        KeyHandler keyH = new KeyHandler(this);
+        public KeyHandler keyH = new KeyHandler(this);
         public AssetSetter aSetter = new AssetSetter(this);
         TileManager tileM = new TileManager(this, keyH, aSetter);
         UI ui = new UI(this);
@@ -47,7 +45,7 @@ public class Game extends JPanel implements Runnable {
         public void setupGame() {
             aSetter.setObject1();
             // gameState = titleState;
-            gameState = playState;
+            gameState = titleState;
     }
 
     public void startGameThread() {
@@ -86,11 +84,21 @@ public class Game extends JPanel implements Runnable {
     }
 
     public void update() {
-        if(gameState == playState){
-            tileM.update();
-        }
         if(gameState == titleState){
+            int playButtonX = ui.getXCenter("Play");
+            int playButtonY = tileSize * 9;
+            int buttonWidth = 150;
+            int buttonHeight = 50;
+    
+            if (keyH.mouseX >= playButtonX && keyH.mouseX <= playButtonX + buttonWidth && keyH.mouseY >= playButtonY - tileSize && keyH.mouseY <= playButtonY + buttonHeight) {
+                gameState = playState;
+            }
+            keyH.mouseClicked = false;
 
+        }
+        // if(gameState == playState){}
+        else{
+            tileM.update();
         }
        
     }
@@ -103,7 +111,7 @@ public class Game extends JPanel implements Runnable {
         if(gameState == titleState){
             ui.draw(g2);
         }
-        else{
+        if(gameState == playState){
             tileM.draw(g2);
 
             for (int i = 0; i < obj.length; i++) {
