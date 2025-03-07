@@ -87,11 +87,18 @@ public class Game extends JPanel implements Runnable {
         if(gameState == titleState){
             int playButtonX = ui.getXCenter("Play");
             int playButtonY = tileSize * 9;
-            int buttonWidth = 150;
-            int buttonHeight = 50;
+            int buttonWidth = 100;
+            int buttonHeight = 20;
     
             if (keyH.mouseX >= playButtonX && keyH.mouseX <= playButtonX + buttonWidth && keyH.mouseY >= playButtonY - tileSize && keyH.mouseY <= playButtonY + buttonHeight) {
                 gameState = playState;
+            }
+            keyH.mouseClicked = false;
+            playButtonX = ui.getXCenter("Quit");
+            playButtonY += tileSize * 2;
+            
+            if (keyH.mouseX >= playButtonX && keyH.mouseX <= playButtonX + buttonWidth && keyH.mouseY >= playButtonY - tileSize && keyH.mouseY <= playButtonY + buttonHeight) {
+                System.exit(0);
             }
             keyH.mouseClicked = false;
 

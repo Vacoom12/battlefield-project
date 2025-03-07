@@ -50,9 +50,6 @@ public class KeyHandler implements KeyListener, MouseListener, ActionListener {
         // mouseX = e.getX();
         // mouseY = e.getY();
         // System.out.println("Mouse Clicked at (" + e.getX() + ", " + e.getY() + ")");
-        if(g.gameState == g.titleState){
-            
-        }
     }
 
     @Override
