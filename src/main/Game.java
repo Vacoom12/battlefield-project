@@ -86,7 +86,7 @@ public class Game extends JPanel implements Runnable {
     public void update() {
         if(gameState == titleState){
             int playButtonX = ui.getXCenter("Play");
-            int playButtonY = tileSize * 9;
+            float playButtonY = (float) (tileSize * 9.5);
             int buttonWidth = 100;
             int buttonHeight = 20;
     
