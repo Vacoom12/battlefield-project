@@ -3,6 +3,9 @@ package src.main;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
 
 public class UI {
     Game g;
@@ -27,8 +30,10 @@ public class UI {
         }
     }
     public void drawTitleScreen(){
-        g2.setColor(new Color(70,120,80));
-        g2.fillRect(0, 0, g.screenWidth, g.screenHeight);;
+        ImageIcon bg = new ImageIcon("/src/res/title/Title.png");
+        // g2.setColor(new Color(70,120,80));
+        // g2.fillRect(0, 0, g.screenWidth, g.screenHeight);
+        g2.drawImage(bg.getImage(), 0, 0, null);
 
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,96F));
         String text = "Battlefield";
