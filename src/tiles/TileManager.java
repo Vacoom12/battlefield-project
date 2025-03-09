@@ -3,12 +3,14 @@ package src.tiles;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.awt.Graphics2D;
 import javax.imageio.ImageIO;
 
 import src.main.Game;
 import src.main.KeyHandler;
 import src.main.UtilityTool;
+import src.entities.Cross;
 import src.main.AssetSetter;
 import src.units.*;
 
@@ -18,6 +20,7 @@ public class TileManager {
     KeyHandler keyH;
     public Tile[] tile;
     public int mapTilePos[][];
+    public ArrayList<Cross> crossList = new ArrayList<>();
 
     public TileManager(Game game, KeyHandler keyH, AssetSetter aSetter) {
         this.game = game;
@@ -97,10 +100,12 @@ public class TileManager {
                 worldRow++;
             }
         }
+
+        for (Cross cross : crossList) 
+            cross.draw(g2, game);
     }
 
     public void update() {
-        System.out.println(keyH.shootCooldown);
         keyH.shootCooldown++;;
         if (keyH.shootCooldown > 1) {
             if (!keyH.canShoot) keyH.canShoot = true;
@@ -123,11 +128,16 @@ public class TileManager {
                         if (tileX >= unitX && tileX < unitX + obj.sizeX &&
                             tileY >= unitY && tileY < unitY + obj.sizeY) {
                             obj.health--;
-                            System.out.println(obj.health);
+                            // System.out.println(obj.health);
                             if (obj.health == 0) {
                                 obj.isDestroy = true;
-                                System.out.println("Unit Destroyed!");
+                                // System.out.println("Unit Destroyed!");
                             }
+
+                            Cross cross = new Cross(game);
+                            cross.x = tileX * game.tileSize;
+                            cross.y = tileY * game.tileSize;
+                            crossList.add(cross);
 
                             break;
                         }
