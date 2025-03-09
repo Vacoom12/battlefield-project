@@ -24,15 +24,16 @@ public class Game extends JPanel implements Runnable {
     public final int maxWorldRow = maxScreenRow;
 
     public int gameState;
-    public final int playState = 1;
     public final int titleState = 0;
+    public final int playState = 1;
+    public final int endState = 2;
     
     Thread gameThread;
     int FPS = 60;
     public KeyHandler keyH = new KeyHandler(this);
     public AssetSetter aSetter = new AssetSetter(this);
     TileManager tileM = new TileManager(this, keyH, aSetter);
-    UI ui = new UI(this);
+    public UI ui = new UI(this);
         
     public Unit obj[] = new Unit[10];
     public int totalUnit;
@@ -90,7 +91,7 @@ public class Game extends JPanel implements Runnable {
     }
 
     public void update() {
-        if(gameState == titleState){
+        if (gameState == titleState){
             int playButtonX = ui.getXCenter("Play");
             float playButtonY = (float) (tileSize * 9.5);
             int buttonWidth = 100;
@@ -108,10 +109,10 @@ public class Game extends JPanel implements Runnable {
             }
             keyH.mouseClicked = false;
 
-        }
-        // if(gameState == playState){}
-        else{
+        } else if (gameState == playState) {
             tileM.update();
+        } else if (gameState == endState) {
+            
         }
        
     }
@@ -123,8 +124,7 @@ public class Game extends JPanel implements Runnable {
 
         if(gameState == titleState){
             ui.draw(g2);
-        }
-        if(gameState == playState){
+        } else if(gameState == playState){
             tileM.draw(g2);
 
             for (int i = 0; i < obj.length; i++) {
@@ -136,6 +136,8 @@ public class Game extends JPanel implements Runnable {
             for (Cross cross : crossList) 
                 cross.draw(g2, this);
 
+            ui.draw(g2);
+        } else if (gameState == endState) {
             ui.draw(g2);
         }
 

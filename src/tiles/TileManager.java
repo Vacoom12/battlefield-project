@@ -140,6 +140,13 @@ public class TileManager {
                         }
                     }
                 }
+
+                if (game.ammo >= 0 && game.totalUnit == 0) {
+                    game.gameState = game.endState;
+                    game.ui.gameWon = true;
+                } else if (game.ammo == 0) {
+                    game.gameState = game.endState;
+                }
             }
 
             keyH.shootCooldown = 0;

@@ -17,6 +17,8 @@ public class UI {
     public boolean messageOn = false;
     public String message = "";
     private BufferedImage bg;
+    public boolean gameFinished = false;
+    public boolean gameWon = false;
     
     public UI(Game game) {
         this.game = game;
@@ -33,9 +35,10 @@ public class UI {
         g2.setFont(arial_40); 
         if (game.gameState == game.titleState){
             drawTitleScreen();
-        }
-        if (game.gameState == game.playState) {
+        } else if (game.gameState == game.playState) {
             drawGameContent();
+        } else if (game.gameState == game.endState) {
+            drawEndScreen();
         }
     }
     public void drawTitleScreen(){
@@ -75,6 +78,13 @@ public class UI {
         g2.setColor(Color.white);
         g2.drawString("Ammo : " + game.ammo, 888, 88);
         g2.drawString("Enemy : " +  game.totalUnit, 1128, 88);
+    }
+
+    public void drawEndScreen() {
+        g2.setFont(arial_40);
+        g2.setColor(Color.white);
+        String result = (gameWon) ? "VICTORY" : "DEFEAT\n" + game.totalUnit + " Left";
+        g2.drawString(result, getXCenter(result), game.screenHeight/2);
     }
 
     public int getXCenter(String text){
