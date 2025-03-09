@@ -4,9 +4,12 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
+
 import javax.swing.JPanel;
 import src.tiles.TileManager;
 import src.units.Unit;
+import src.entities.*;
 
 public class Game extends JPanel implements Runnable {
     final int originalTileSize = 16;
@@ -24,28 +27,30 @@ public class Game extends JPanel implements Runnable {
     public final int playState = 1;
     public final int titleState = 0;
     
-        Thread gameThread;
-        int FPS = 60;
-        public KeyHandler keyH = new KeyHandler(this);
-        public AssetSetter aSetter = new AssetSetter(this);
-        TileManager tileM = new TileManager(this, keyH, aSetter);
-        UI ui = new UI(this);
+    Thread gameThread;
+    int FPS = 60;
+    public KeyHandler keyH = new KeyHandler(this);
+    public AssetSetter aSetter = new AssetSetter(this);
+    TileManager tileM = new TileManager(this, keyH, aSetter);
+    UI ui = new UI(this);
         
-        public Unit obj[] = new Unit[10];
+    public Unit obj[] = new Unit[10];
+    public int ammo = 50;
+    public ArrayList<Cross> crossList = new ArrayList<>();
     
-        public Game() {
-            this.setPreferredSize(new Dimension(screenWidth, screenHeight));
-            this.setBackground(Color.black);
-            this.setDoubleBuffered(true);
-            this.addKeyListener(keyH);
-            this.addMouseListener(keyH);
-            this.setFocusable(true);
-        }
+    public Game() {
+        this.setPreferredSize(new Dimension(screenWidth, screenHeight));
+        this.setBackground(Color.black);
+        this.setDoubleBuffered(true);
+        this.addKeyListener(keyH);
+        this.addMouseListener(keyH);
+        this.setFocusable(true);
+    }
     
-        public void setupGame() {
-            aSetter.setObject1();
-            // gameState = titleState;
-            gameState = titleState;
+    public void setupGame() {
+        aSetter.setObject1();
+        // gameState = titleState;
+        gameState = titleState;
     }
 
     public void startGameThread() {
@@ -126,6 +131,9 @@ public class Game extends JPanel implements Runnable {
                     obj[i].draw(g2, this);
                 }
             }
+
+            for (Cross cross : crossList) 
+                cross.draw(g2, this);
         }
 
         g2.dispose();

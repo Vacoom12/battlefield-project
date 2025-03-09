@@ -3,7 +3,6 @@ package src.tiles;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.awt.Graphics2D;
 import javax.imageio.ImageIO;
 
@@ -20,7 +19,6 @@ public class TileManager {
     KeyHandler keyH;
     public Tile[] tile;
     public int mapTilePos[][];
-    public ArrayList<Cross> crossList = new ArrayList<>();
 
     public TileManager(Game game, KeyHandler keyH, AssetSetter aSetter) {
         this.game = game;
@@ -100,9 +98,6 @@ public class TileManager {
                 worldRow++;
             }
         }
-
-        for (Cross cross : crossList) 
-            cross.draw(g2, game);
     }
 
     public void update() {
@@ -119,6 +114,10 @@ public class TileManager {
             if (tileX >= 0 && tileX < game.maxWorldCol && tileY >= 0 && tileY < game.maxWorldRow && mapTilePos[tileX][tileY] == 1 && mapTilePos[tileX][tileY] != 2) {
                 mapTilePos[tileX][tileY] = 2;
                 int unitX, unitY;
+
+                game.ammo--;
+                System.out.println("Ammo : " + game.ammo);
+
 
                 for (Unit obj : game.obj) {
                     if (obj != null) {     
@@ -137,7 +136,7 @@ public class TileManager {
                             Cross cross = new Cross(game);
                             cross.x = tileX * game.tileSize;
                             cross.y = tileY * game.tileSize;
-                            crossList.add(cross);
+                            game.crossList.add(cross);
 
                             break;
                         }
