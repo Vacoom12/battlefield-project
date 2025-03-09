@@ -35,7 +35,8 @@ public class Game extends JPanel implements Runnable {
     UI ui = new UI(this);
         
     public Unit obj[] = new Unit[10];
-    public int ammo = 50;
+    public int totalUnit;
+    public int ammo = 100;
     public ArrayList<Cross> crossList = new ArrayList<>();
     
     public Game() {
@@ -134,6 +135,8 @@ public class Game extends JPanel implements Runnable {
 
             for (Cross cross : crossList) 
                 cross.draw(g2, this);
+
+            ui.draw(g2);
         }
 
         g2.dispose();
