@@ -76,6 +76,6 @@ public class KeyHandler implements KeyListener, MouseListener, ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        
+        System.out.println("hello");
     }
 }

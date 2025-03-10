@@ -3,9 +3,12 @@ package src.main;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 public class UI {
     Game game;
@@ -14,7 +17,7 @@ public class UI {
     public boolean messageOn = false;
     public String message = "";
     private BufferedImage bg;
-    private BufferedImage[] button = new BufferedImage[10];
+    private JButton[] button = new JButton[10];
     public boolean gameFinished = false;
     public boolean gameWon = false;
     
@@ -44,8 +47,9 @@ public class UI {
     public void drawTitleScreen(){
         try{
             bg = ImageIO.read(getClass().getResourceAsStream("/src/res/title/titlebackground.png"));
-            button[0] = ImageIO.read(getClass().getResourceAsStream("/src/res/title/playbutton.png"));
-            button[1] = ImageIO.read(getClass().getResourceAsStream("/src/res/title/quitbutton.png"));
+            button[0] = new JButton(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/src/res/title/playbutton.png"))));
+            
+            button[1] = new JButton(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/src/res/title/quitbutton.png"))));
         }
         catch(IOException e){
             e.printStackTrace();
@@ -53,8 +57,11 @@ public class UI {
         // g2.setColor(new Color(70,120,80));
         // g2.fillRect(0, 0, game.screenWidth, game.screenHeight);
         g2.drawImage(bg, 0, 0, game.screenWidth, game.screenHeight, null);
-        g2.drawImage(button[0], 0, 0, game.screenWidth, game.screenHeight, null);
-        g2.drawImage(button[1], 0, 0, game.screenWidth, game.screenHeight, null);
+        g2.drawImage(((ImageIcon) button[0].getIcon()).getImage(), 0, 0, game.screenWidth, game.screenHeight, null);
+        button[0].setBounds(0, 0, 30, 150);
+        button[0].addActionListener(new KeyHandler(game));
+        // window.add(button[0]);
+        g2.drawImage(((ImageIcon) button[1].getIcon()).getImage(), 0, 0, game.screenWidth, game.screenHeight, null);
 
         // g2.setFont(g2.getFont().deriveFont(Font.BOLD,96F));
         // String text = "Battlefield";
