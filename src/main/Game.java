@@ -124,7 +124,7 @@ public class Game extends JPanel implements Runnable {
 
         if(gameState == titleState){
             ui.draw(g2);
-        } else if(gameState == playState){
+        } else {
             tileM.draw(g2);
 
             for (int i = 0; i < obj.length; i++) {
@@ -136,8 +136,6 @@ public class Game extends JPanel implements Runnable {
             for (Cross cross : crossList) 
                 cross.draw(g2, this);
 
-            ui.draw(g2);
-        } else if (gameState == endState) {
             ui.draw(g2);
         }
 

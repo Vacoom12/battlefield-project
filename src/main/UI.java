@@ -25,10 +25,12 @@ public class UI {
         arial_40 = new Font("Arial", Font.PLAIN, 40);
         arial_80B = new Font("Arial", Font.BOLD, 80);
     }
+
     public void showMessage(String text){
         message = text;
         messageOn = true;
     }
+
     public void draw(Graphics2D g2){
         this.g2 = g2;
 
@@ -83,8 +85,19 @@ public class UI {
     public void drawEndScreen() {
         g2.setFont(arial_40);
         g2.setColor(Color.white);
-        String result = (gameWon) ? "VICTORY" : "DEFEAT\n" + game.totalUnit + " Left";
-        g2.drawString(result, getXCenter(result), game.screenHeight/2);
+        String result;
+        String message1;
+        String message2 = "RETURN TO TITLE";
+        if (gameWon) {
+            result = "VICTORY";
+            g2.drawString(result, getXCenter(result), game.screenHeight / 2);
+        } else {
+            result = "DEFEAT";
+            message1 = String.valueOf(game.totalUnit) + " LEFT";
+            g2.drawString(result, getXCenter(result), game.screenHeight / 2 - game.tileSize);
+            g2.drawString(message1, getXCenter(message1), game.screenHeight / 2 + game.tileSize);
+        }
+        
     }
 
     public int getXCenter(String text){
