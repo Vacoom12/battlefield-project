@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 import src.main.Game;
 import src.main.KeyHandler;
 import src.main.UtilityTool;
+import src.entities.Cross;
 import src.main.AssetSetter;
 import src.units.*;
 
@@ -100,7 +101,6 @@ public class TileManager {
     }
 
     public void update() {
-        System.out.println(keyH.shootCooldown);
         keyH.shootCooldown++;;
         if (keyH.shootCooldown > 1) {
             if (!keyH.canShoot) keyH.canShoot = true;
@@ -115,6 +115,8 @@ public class TileManager {
                 mapTilePos[tileX][tileY] = 2;
                 int unitX, unitY;
 
+                game.ammo--;
+
                 for (Unit obj : game.obj) {
                     if (obj != null) {     
                         unitX = obj.x / game.tileSize;
@@ -123,15 +125,27 @@ public class TileManager {
                         if (tileX >= unitX && tileX < unitX + obj.sizeX &&
                             tileY >= unitY && tileY < unitY + obj.sizeY) {
                             obj.health--;
-                            System.out.println(obj.health);
+
                             if (obj.health == 0) {
                                 obj.isDestroy = true;
-                                System.out.println("Unit Destroyed!");
+                                game.totalUnit--;
                             }
+
+                            Cross cross = new Cross(game);
+                            cross.x = tileX * game.tileSize;
+                            cross.y = tileY * game.tileSize;
+                            game.crossList.add(cross);
 
                             break;
                         }
                     }
+                }
+
+                if (game.ammo >= 0 && game.totalUnit == 0) {
+                    game.gameState = game.endState;
+                    game.ui.gameWon = true;
+                } else if (game.ammo == 0) {
+                    game.gameState = game.endState;
                 }
             }
 

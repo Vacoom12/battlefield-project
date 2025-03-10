@@ -51,6 +51,8 @@ public class AssetSetter {
     }
 
     public void setObject1() {
+        game.totalUnit = 7;
+
         game.obj[0] = new Soldier(game);
         placeUnit(game.obj[0], game.obj[0].sizeX, game.obj[0].sizeY);
 
@@ -71,9 +73,5 @@ public class AssetSetter {
 
         game.obj[6] = new HeavyTank(game);
         placeUnit(game.obj[6], game.obj[6].sizeX, game.obj[6].sizeY);
-
-        // for (int[] arr : occupiedTiles) {
-        //     System.out.println(arr[0] + " : " + arr[1] + " : " + arr[2] + " : " + arr[3]);
-        // }
     }
 }
