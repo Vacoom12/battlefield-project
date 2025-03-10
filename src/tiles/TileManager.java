@@ -25,7 +25,7 @@ public class TileManager {
         this.keyH = keyH;
         this.aSetter = aSetter;
 
-        tile = new Tile[10];
+        tile = new Tile[15];
         mapTilePos = new int[game.maxScreenCol][game.maxScreenRow];
 
         getTileImage();
@@ -33,10 +33,17 @@ public class TileManager {
     }
 
     public void getTileImage() {
-        setup(0, "grass");
-        setup(1, "sand");
-        setup(2, "earth");
-        setup(3, "tree");
+        setup(0, "Grasses");
+        setup(1, "Dirt");
+        setup(2, "Dirt_Boom");
+        setup(3, "CornerL");
+        setup(4, "CornerR");
+        setup(5, "CornerT");
+        setup(6, "CornerB");
+        setup(7, "CornerTL");
+        setup(8, "CornerTR");
+        setup(9, "CornerBL");
+        setup(10, "CornerBR");
     }
 
     public void setup(int index, String imageName) {
