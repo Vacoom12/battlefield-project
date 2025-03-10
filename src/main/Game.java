@@ -36,7 +36,7 @@ public class Game extends JPanel implements Runnable {
         
     public Unit obj[] = new Unit[10];
     public int totalUnit;
-    public int ammo = 100;
+    public int ammo;
     public ArrayList<Cross> crossList = new ArrayList<>();
     
     public Game() {
@@ -49,8 +49,7 @@ public class Game extends JPanel implements Runnable {
     }
     
     public void setupGame() {
-        aSetter.setObject1();
-        // gameState = titleState;
+        aSetter.setObject3();
         gameState = titleState;
     }
 
