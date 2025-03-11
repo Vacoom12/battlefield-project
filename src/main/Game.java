@@ -93,11 +93,15 @@ public class Game extends JPanel implements Runnable {
     }
 
     public void update() {
+        int ButtonX = 0;
+        int ButtonY = 0;
+        int buttonWidth = 0;
+        int buttonHeight = 0;
         if (gameState == titleState){
-            int ButtonX = screenWidth - 820;
-            int ButtonY = screenHeight - 300;
-            int buttonWidth = 290;
-            int buttonHeight = 20;
+            ButtonX = screenWidth - 820;
+            ButtonY = screenHeight - 300;
+            buttonWidth = 290;
+            buttonHeight = 20;
     
             if (keyH.mouseX >= ButtonX && keyH.mouseX <= ButtonX + buttonWidth && keyH.mouseY >= ButtonY - tileSize && keyH.mouseY <= ButtonY + buttonHeight) {
                 gameState = diffState;
@@ -113,10 +117,10 @@ public class Game extends JPanel implements Runnable {
             keyH.mouseClicked = false;
 
         }else if(gameState == diffState){
-            int ButtonX = screenWidth - 1050;
-            int ButtonY = screenHeight / 2;
-            int buttonWidth = 150;
-            int buttonHeight = 20;
+            ButtonX = screenWidth - 1050;
+            ButtonY = screenHeight / 2;
+            buttonWidth = 150;
+            buttonHeight = 20;
     
             if (keyH.mouseX >= ButtonX && keyH.mouseX <= ButtonX + buttonWidth && keyH.mouseY >= ButtonY - tileSize && keyH.mouseY <= ButtonY + buttonHeight) {
                 gameState = playState;
@@ -138,7 +142,15 @@ public class Game extends JPanel implements Runnable {
         } else if (gameState == playState) {
             tileM.update();
         } else if (gameState == endState) {
-            
+            ButtonX = screenWidth - 850;
+            ButtonY = (screenHeight / 2) + (tileSize * 3);
+            buttonWidth = 350;
+            buttonHeight = 20;
+    
+            if (keyH.mouseX >= ButtonX && keyH.mouseX <= ButtonX + buttonWidth && keyH.mouseY >= ButtonY - tileSize && keyH.mouseY <= ButtonY + buttonHeight) {
+                gameState = titleState;
+            }
+            keyH.mouseClicked = false;
         }
        
     }
