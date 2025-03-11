@@ -121,8 +121,9 @@ public class TileManager {
             if (tileX >= 0 && tileX < game.maxWorldCol && tileY >= 0 && tileY < game.maxWorldRow && mapTilePos[tileX][tileY] == 1 && mapTilePos[tileX][tileY] != 2) {
                 mapTilePos[tileX][tileY] = 2;
                 int unitX, unitY;
-
+                int se = 1;
                 game.ammo--;
+
 
                 for (Unit obj : game.obj) {
                     if (obj != null) {     
@@ -131,9 +132,11 @@ public class TileManager {
 
                         if (tileX >= unitX && tileX < unitX + obj.sizeX &&
                             tileY >= unitY && tileY < unitY + obj.sizeY) {
+                            se = 2;
                             obj.health--;
 
                             if (obj.health == 0) {
+                                se = 3;
                                 obj.isDestroy = true;
                                 game.totalUnit--;
                             }
@@ -147,6 +150,8 @@ public class TileManager {
                         }
                     }
                 }
+
+                game.playSE(se);
 
                 if (game.ammo >= 0 && game.totalUnit == 0) {
                     game.gameState = game.endState;

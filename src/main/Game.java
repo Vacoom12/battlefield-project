@@ -33,6 +33,8 @@ public class Game extends JPanel implements Runnable {
     public AssetSetter aSetter = new AssetSetter(this);
     TileManager tileM = new TileManager(this, keyH, aSetter);
     public UI ui = new UI(this);
+    Sound bgm = new Sound();
+    Sound sfx = new Sound();
         
     public Unit obj[] = new Unit[10];
     public int totalUnit;
@@ -49,8 +51,9 @@ public class Game extends JPanel implements Runnable {
     }
     
     public void setupGame() {
-        aSetter.setObject3();
+        aSetter.setObject1();
         gameState = titleState;
+        playMusic(0);
     }
 
     public void startGameThread() {
@@ -140,5 +143,20 @@ public class Game extends JPanel implements Runnable {
         }
 
         g2.dispose();
+    }
+
+    public void playMusic(int i) {
+        bgm.setFile(i);
+        bgm.play();
+        bgm.loop();
+    }
+
+    public void stopMusic() {
+        bgm.stop();
+    }
+
+    public void playSE(int i) {
+        sfx.setFile(i);
+        sfx.play();
     }
 }

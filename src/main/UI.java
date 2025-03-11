@@ -42,6 +42,7 @@ public class UI {
             drawGameContent();
         } else if (game.gameState == game.endState) {
             drawEndScreen();
+            game.stopMusic();
         }
     }
     public void drawTitleScreen(){
