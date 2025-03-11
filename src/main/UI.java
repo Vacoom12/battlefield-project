@@ -119,6 +119,7 @@ public class UI {
             message1 = String.valueOf(game.totalUnit) + " LEFT";
             g2.drawString(result, getXCenter(result), game.screenHeight / 2 - game.tileSize);
             g2.drawString(message1, getXCenter(message1), game.screenHeight / 2 + game.tileSize);
+            g2.drawString(message2, getXCenter(message2), game.screenHeight / 2 + (game.tileSize * 3));
         }
         
     }
