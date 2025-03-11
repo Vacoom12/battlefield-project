@@ -8,14 +8,14 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class KeyHandler implements KeyListener, MouseListener, ActionListener {
-    Game g;
+    Game game;
     public int mouseX, mouseY;
     public boolean mouseClicked = false;
     public boolean canShoot = true;
     public int shootCooldown = 0;
 
-    public KeyHandler(Game g){
-        this.g = g;
+    public KeyHandler(Game game){
+        this.game = game;
     }
 
     @Override
@@ -57,11 +57,19 @@ public class KeyHandler implements KeyListener, MouseListener, ActionListener {
         mouseX = e.getX();
         mouseY = e.getY();
         mouseClicked = true;
+
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
         mouseClicked = false;
+
+        if (!mouseClicked && game.gameState == game.endState) {
+            if (game.ui.gameWon)
+                game.playSE(4);
+            if (!game.ui.gameWon)
+                game.playSE(5);
+        }
     }
 
     @Override

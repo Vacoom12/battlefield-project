@@ -18,7 +18,6 @@ public class UI {
     public String message = "";
     private BufferedImage bg;
     private JButton[] button = new JButton[10];
-    public boolean gameFinished = false;
     public boolean gameWon = false;
     
     public UI(Game game) {
