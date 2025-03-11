@@ -17,18 +17,30 @@ public class UI {
     public boolean messageOn = false;
     public String message = "";
     private BufferedImage bg;
-    private JButton[] button = new JButton[10];
+    private JButton[] button = new JButton[2];
     public boolean gameWon = false;
     
     public UI(Game game) {
         this.game = game;
         arial_40 = new Font("Arial", Font.PLAIN, 40);
         arial_80B = new Font("Arial", Font.BOLD, 80);
+
+        getImage();
     }
 
     public void showMessage(String text){
         message = text;
         messageOn = true;
+    }
+    public void getImage(){
+        try{
+            bg = ImageIO.read(getClass().getResourceAsStream("/src/res/title/titlebackground.png"));
+            button[0] = new JButton(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/src/res/title/playbutton.png"))));
+            button[1] = new JButton(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/src/res/title/quitbutton.png"))));
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
     }
 
     public void draw(Graphics2D g2){
@@ -37,6 +49,8 @@ public class UI {
         g2.setFont(arial_40); 
         if (game.gameState == game.titleState){
             drawTitleScreen();
+        } else if(game.gameState == game.diffState){
+            drawDiff();
         } else if (game.gameState == game.playState) {
             drawGameContent();
         } else if (game.gameState == game.endState) {
@@ -45,21 +59,10 @@ public class UI {
         }
     }
     public void drawTitleScreen(){
-        try{
-            bg = ImageIO.read(getClass().getResourceAsStream("/src/res/title/titlebackground.png"));
-            button[0] = new JButton(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/src/res/title/playbutton.png"))));
-            
-            button[1] = new JButton(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/src/res/title/quitbutton.png"))));
-        }
-        catch(IOException e){
-            e.printStackTrace();
-        }
         // g2.setColor(new Color(70,120,80));
         // g2.fillRect(0, 0, game.screenWidth, game.screenHeight);
         g2.drawImage(bg, 0, 0, game.screenWidth, game.screenHeight, null);
         g2.drawImage(((ImageIcon) button[0].getIcon()).getImage(), 0, 0, game.screenWidth, game.screenHeight, null);
-        button[0].setBounds(0, 0, 30, 150);
-        button[0].addActionListener(new KeyHandler(game));
         // window.add(button[0]);
         g2.drawImage(((ImageIcon) button[1].getIcon()).getImage(), 0, 0, game.screenWidth, game.screenHeight, null);
 
@@ -83,6 +86,16 @@ public class UI {
         // x = getXCenter(text);
         // y += game.tileSize*2;
         // g2.drawString(text, x, y);
+    }
+    public void drawDiff(){
+        g2.setColor(Color.black);
+        g2.fillRect(0, 0, game.screenWidth, game.screenHeight);
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,48F));
+        String e = "Easy", n = "Normal", h = "Hard";
+        g2.setColor(Color.white);
+        g2.drawString(e, game.screenWidth-1050, game.screenHeight/2);
+        g2.drawString(n, game.screenWidth-750, game.screenHeight/2);
+        g2.drawString(h, game.screenWidth-400, game.screenHeight/2);
     }
 
     public void drawGameContent() {

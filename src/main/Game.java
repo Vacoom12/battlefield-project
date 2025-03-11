@@ -24,8 +24,9 @@ public class Game extends JPanel implements Runnable {
 
     public int gameState;
     public final int titleState = 0;
-    public final int playState = 1;
-    public final int endState = 2;
+    public final int diffState = 1;
+    public final int playState = 2;
+    public final int endState = 3;
     
     Thread gameThread;
     int FPS = 60;
@@ -93,25 +94,47 @@ public class Game extends JPanel implements Runnable {
 
     public void update() {
         if (gameState == titleState){
-            int playButtonX = ui.getXCenter("Play");
-            float playButtonY = (float) (tileSize * 9.5);
-            int buttonWidth = 100;
+            int ButtonX = screenWidth - 820;
+            int ButtonY = screenHeight - 300;
+            int buttonWidth = 290;
             int buttonHeight = 20;
     
-            if (keyH.mouseX >= playButtonX && keyH.mouseX <= playButtonX + buttonWidth && keyH.mouseY >= playButtonY - tileSize && keyH.mouseY <= playButtonY + buttonHeight) {
-                gameState = playState;
+            if (keyH.mouseX >= ButtonX && keyH.mouseX <= ButtonX + buttonWidth && keyH.mouseY >= ButtonY - tileSize && keyH.mouseY <= ButtonY + buttonHeight) {
+                gameState = diffState;
             }
             keyH.mouseClicked = false;
 
-            int quitButtonX = ui.getXCenter("Quit");
-            float quitButtonY = playButtonY + tileSize * 2;
-            int quitButtonWidth = 80;
-            int quitButtonHeight = 15;
-            if (keyH.mouseX >= quitButtonX && keyH.mouseX <= quitButtonX + quitButtonWidth && keyH.mouseY >= quitButtonY - tileSize && keyH.mouseY <= quitButtonY + quitButtonHeight) {
+            ButtonX += 20;
+            ButtonY += 100;
+            buttonWidth -= 40;
+            if (keyH.mouseX >= ButtonX && keyH.mouseX <= ButtonX + buttonWidth && keyH.mouseY >= ButtonY - tileSize && keyH.mouseY <= ButtonY + buttonHeight) {
                 System.exit(0);
             }
             keyH.mouseClicked = false;
 
+        }else if(gameState == diffState){
+            int ButtonX = screenWidth - 1050;
+            int ButtonY = screenHeight / 2;
+            int buttonWidth = 150;
+            int buttonHeight = 20;
+    
+            if (keyH.mouseX >= ButtonX && keyH.mouseX <= ButtonX + buttonWidth && keyH.mouseY >= ButtonY - tileSize && keyH.mouseY <= ButtonY + buttonHeight) {
+                gameState = playState;
+            }
+            keyH.mouseClicked = false;
+
+            ButtonX += 300;
+
+            if (keyH.mouseX >= ButtonX && keyH.mouseX <= ButtonX + buttonWidth && keyH.mouseY >= ButtonY - tileSize && keyH.mouseY <= ButtonY + buttonHeight) {
+                System.exit(0);
+            }
+            keyH.mouseClicked = false;
+
+            ButtonX += 350;
+            if (keyH.mouseX >= ButtonX && keyH.mouseX <= ButtonX + buttonWidth && keyH.mouseY >= ButtonY - tileSize && keyH.mouseY <= ButtonY + buttonHeight) {
+                System.exit(0);
+            }
+            keyH.mouseClicked = false;
         } else if (gameState == playState) {
             tileM.update();
         } else if (gameState == endState) {
