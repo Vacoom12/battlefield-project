@@ -1,7 +1,6 @@
 package src.main;
 
 import java.util.ArrayList;
-
 import src.units.*;    
 
 public class AssetSetter {

@@ -2,9 +2,11 @@ package src.main;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.InputStream;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -12,7 +14,7 @@ import javax.swing.JButton;
 public class UI {
     Game game;
     Graphics2D g2;
-    Font arial_40, arial_80B;
+    Font pixelFont;
     public boolean messageOn = false;
     public String message = "";
     private BufferedImage bg;
@@ -20,8 +22,15 @@ public class UI {
     
     public UI(Game game) {
         this.game = game;
-        arial_40 = new Font("Arial", Font.PLAIN, 40);
-        arial_80B = new Font("Arial", Font.BOLD, 80);
+        // src\res\font\Pixel Madness.ttf
+        InputStream is = getClass().getResourceAsStream("/src/res/font/Pixel Madness.ttf");
+        try {
+            pixelFont = Font.createFont(Font.TRUETYPE_FONT, is);
+        } catch (FontFormatException | IOException e) {
+            e.printStackTrace();
+        }
+        // arial_40 = new Font("Arial", Font.PLAIN, 40);
+        // arial_80B = new Font("Arial", Font.BOLD, 80);
 
         getImage();
     }
@@ -44,7 +53,7 @@ public class UI {
     public void draw(Graphics2D g2){
         this.g2 = g2;
 
-        g2.setFont(arial_40); 
+        g2.setFont(pixelFont);
         if (game.gameState == game.titleState){
             drawTitleScreen();
         } else if(game.gameState == game.diffState){
@@ -88,7 +97,7 @@ public class UI {
     public void drawDiff(){
         g2.setColor(Color.black);
         g2.fillRect(0, 0, game.screenWidth, game.screenHeight);
-        g2.setFont(g2.getFont().deriveFont(Font.BOLD,48F));
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,70F));
         String e = "Easy", n = "Normal", h = "Hard";
         g2.setColor(Color.white);
         g2.drawString(e, game.screenWidth-1050, game.screenHeight/2);
@@ -97,28 +106,37 @@ public class UI {
     }
 
     public void drawGameContent() {
-        g2.setFont(arial_40);
+        g2.setFont(pixelFont);
         g2.setColor(Color.white);
-        g2.drawString("Ammo : " + game.ammo, 788, 88);
-        g2.drawString("Enemy : " +  game.totalUnit, 1028, 88);
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,48F));
+        String A = "Ammo : " + game.ammo, E = "Enemy : " + game.totalUnit;
+        g2.drawString(A, 650, 88);
+        g2.drawString(E, 990, 88);
+
+        // g2.drawString("Ammo : " + game.ammo, 788, 88);
+        // g2.drawString("Enemy : " + game.totalUnit, 1028, 88);
     }
 
     public void drawEndScreen() {
-        g2.setFont(arial_40);
+        g2.setFont(pixelFont);
         g2.setColor(Color.white);
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,48F));
         String result;
         String message1;
         String message2 = "RETURN TO TITLE";
         if (game.gameWon) {
             result = "VICTORY";
-            g2.drawString(result, getXCenter(result), game.screenHeight / 2);
             g2.drawString(message2, getXCenter(message2), game.screenHeight / 2 + (game.tileSize * 3));
+            g2.setFont(g2.getFont().deriveFont(Font.BOLD,100F));
+            g2.drawString(result, getXCenter(result), game.screenHeight / 2);
+
         } else {
             result = "DEFEAT";
             message1 = String.valueOf(game.totalUnit) + " LEFT";
-            g2.drawString(result, getXCenter(result), game.screenHeight / 2 - game.tileSize);
             g2.drawString(message1, getXCenter(message1), game.screenHeight / 2 + game.tileSize);
             g2.drawString(message2, getXCenter(message2), game.screenHeight / 2 + (game.tileSize * 3));
+            g2.setFont(g2.getFont().deriveFont(Font.BOLD,100F));
+            g2.drawString(result, getXCenter(result), game.screenHeight / 2 - game.tileSize);
         }
         
     }
