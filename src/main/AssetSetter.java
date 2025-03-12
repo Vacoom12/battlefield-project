@@ -52,7 +52,7 @@ public class AssetSetter {
 
     public void setObject1() {
         game.totalUnit = 7;
-        game.ammo = 5;
+        game.ammo = 100;
     
         game.obj[0] = new Soldier(game);
         placeUnit(game.obj[0], game.obj[0].sizeX, game.obj[0].sizeY);
