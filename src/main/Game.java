@@ -35,15 +35,16 @@ public class Game extends JPanel implements Runnable {
     int FPS = 60;
     public KeyHandler keyH = new KeyHandler(this);
     public AssetSetter aSetter = new AssetSetter(this);
-    TileManager tileM = new TileManager(this, keyH, aSetter);
+    TileManager tileM;
     public UI ui = new UI(this);
     Sound bgm = new Sound();
     Sound sfx = new Sound();
+    public boolean gameWon = false;
         
-    public Unit obj[] = new Unit[10];
+    public Unit obj[];
     public int totalUnit;
     public int ammo;
-    public ArrayList<Cross> crossList = new ArrayList<>();
+    public ArrayList<Cross> crossList;
     
     public Game() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -55,15 +56,11 @@ public class Game extends JPanel implements Runnable {
     }
     
     public void setupGame() {
-        // if(gameState == easyState){
-        //     aSetter.setObject1();
-        // }else if (gameState == normalState) {
-        //     aSetter.setObject2();
-        // }else if (gameState == hardState){
-        //     aSetter.setObject3();
-        // }
-        // aSetter.setObject1();
         gameState = titleState;
+        tileM = new TileManager(this, keyH, aSetter);
+        gameWon = false;
+        obj = new Unit[10];
+        crossList = new ArrayList<>();
         playMusic(0);
     }
 

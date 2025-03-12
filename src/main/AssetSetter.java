@@ -60,13 +60,13 @@ public class AssetSetter {
         game.obj[1] = new Soldier(game);
         placeUnit(game.obj[1], game.obj[1].sizeX, game.obj[1].sizeY);
     
-        game.obj[2] = new Soldier(game);
+        game.obj[2] = new Turret(game);
         placeUnit(game.obj[2], game.obj[2].sizeX, game.obj[2].sizeY);
     
         game.obj[3] = new Turret(game);
         placeUnit(game.obj[3], game.obj[3].sizeX, game.obj[3].sizeY);
     
-        game.obj[4] = new Turret(game);
+        game.obj[4] = new Tank(game);
         placeUnit(game.obj[4], game.obj[4].sizeX, game.obj[4].sizeY);
     
         game.obj[5] = new Tank(game);

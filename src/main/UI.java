@@ -3,7 +3,6 @@ package src.main;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -18,7 +17,6 @@ public class UI {
     public String message = "";
     private BufferedImage bg;
     private JButton[] button = new JButton[2];
-    public boolean gameWon = false;
     
     public UI(Game game) {
         this.game = game;
@@ -111,7 +109,7 @@ public class UI {
         String result;
         String message1;
         String message2 = "RETURN TO TITLE";
-        if (gameWon) {
+        if (game.gameWon) {
             result = "VICTORY";
             g2.drawString(result, getXCenter(result), game.screenHeight / 2);
             g2.drawString(message2, getXCenter(message2), game.screenHeight / 2 + (game.tileSize * 3));
