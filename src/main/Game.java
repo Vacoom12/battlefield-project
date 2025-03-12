@@ -41,8 +41,9 @@ public class Game extends JPanel implements Runnable {
     Sound sfx = new Sound();
     public boolean endSound = true;
     public boolean gameWon = false;
-        
-    public Unit obj[];
+    
+    public Unit[] allyObj = new Unit[5];
+    public Unit[] obj;
     public int totalUnit;
     public int ammo;
     public ArrayList<Cross> crossList;
@@ -63,6 +64,7 @@ public class Game extends JPanel implements Runnable {
         gameWon = false;
         obj = new Unit[10];
         crossList = new ArrayList<>();
+        aSetter.setAlly();
         playMusic(0);
     }
 
@@ -118,10 +120,14 @@ public class Game extends JPanel implements Runnable {
         } else {
             tileM.draw(g2);
 
-            for (int i = 0; i < obj.length; i++) {
-                if (obj[i] != null && obj[i].isDestroy) {
-                    obj[i].draw(g2, this);
-                }
+            for (Unit ally : allyObj) {
+                if (ally != null)
+                    ally.draw(g2, this);
+            }
+
+            for (Unit enemy : obj) {
+                if (enemy != null && enemy.isDestroy)
+                    enemy.draw(g2, this);
             }
 
             for (Cross cross : crossList) 

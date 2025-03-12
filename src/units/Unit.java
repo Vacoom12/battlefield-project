@@ -13,7 +13,7 @@ public class Unit {
     public int health;      
     public String name;
     public boolean isDestroy;
-    public BufferedImage image;  
+    public BufferedImage image, fireImage;
     UtilityTool uTool = new UtilityTool();
 
     public void draw(Graphics2D g2, Game game) {

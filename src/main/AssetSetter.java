@@ -49,6 +49,20 @@ public class AssetSetter {
         occupiedUnits.add(new int[]{x, y, sizeX, sizeY, unit.health}); // Store the occupied unit infos
     }
 
+    public void setAlly() {
+        game.allyObj[0] = new AllySoldier(game);
+        game.allyObj[0].x = 8 * game.tileSize;
+        game.allyObj[0].y = 3 * game.tileSize;
+
+        game.allyObj[1] = new AllySoldier(game);
+        game.allyObj[1].x = 10 * game.tileSize;
+        game.allyObj[1].y = 14 * game.tileSize;
+
+        game.allyObj[2] = new AllyTurret(game);
+        game.allyObj[2].x = 5 * game.tileSize;
+        game.allyObj[2].y = 8 * game.tileSize;
+    }
+
     public void setObject1() {
         game.totalUnit = 7;
         game.ammo = 100;
