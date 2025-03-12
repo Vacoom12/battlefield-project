@@ -128,15 +128,6 @@ public class KeyHandler implements KeyListener, MouseListener, ActionListener {
         }
 
         mouseClicked = false;
-
-        if (!mouseClicked && game.gameState == game.endState) {
-            if (game.gameWon && game.endSound)
-                game.playSE(4);
-                game.endSound = false;
-            if (!game.gameWon && game.endSound)
-                game.playSE(5);
-                game.endSound = false;
-        }
     }
 
     @Override

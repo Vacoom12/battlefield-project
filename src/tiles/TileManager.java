@@ -156,8 +156,10 @@ public class TileManager {
                 if (game.ammo >= 0 && game.totalUnit == 0) {
                     game.gameState = game.endState;
                     game.gameWon = true;
+                    game.playSE(4);
                 } else if (game.ammo == 0) {
                     game.gameState = game.endState;
+                    game.playSE(5);
                 }
             }
 

@@ -39,7 +39,6 @@ public class Game extends JPanel implements Runnable {
     public UI ui = new UI(this);
     Sound bgm = new Sound();
     Sound sfx = new Sound();
-    public boolean endSound = true;
     public boolean gameWon = false;
     
     public Unit[] allyObj = new Unit[5];
@@ -60,7 +59,6 @@ public class Game extends JPanel implements Runnable {
     public void setupGame() {
         gameState = titleState;
         tileM = new TileManager(this, keyH, aSetter);
-        endSound = true;
         gameWon = false;
         obj = new Unit[10];
         crossList = new ArrayList<>();
