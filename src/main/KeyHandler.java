@@ -48,6 +48,19 @@ public class KeyHandler implements KeyListener, MouseListener, ActionListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        mouseX = e.getX();
+        mouseY = e.getY();
+        mouseClicked = true;
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
         mouseX = e.getX();
         mouseY = e.getY();
         if (game.gameState == game.titleState) {
@@ -73,7 +86,7 @@ public class KeyHandler implements KeyListener, MouseListener, ActionListener {
 
         } else if (game.gameState == game.diffState) {
             ButtonX = game.screenWidth - 1050;
-            ButtonY = game.screenHeight / 2;
+            ButtonY = (game.screenHeight / 2) + 25;
             buttonWidth = 150;
             buttonHeight = 20;
 
@@ -113,18 +126,7 @@ public class KeyHandler implements KeyListener, MouseListener, ActionListener {
             }
             mouseClicked = false;
         }
-    }
 
-    @Override
-    public void mousePressed(MouseEvent e) {
-        mouseX = e.getX();
-        mouseY = e.getY();
-        mouseClicked = true;
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
         mouseClicked = false;
 
         if (!mouseClicked && game.gameState == game.endState) {
