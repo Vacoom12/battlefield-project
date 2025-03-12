@@ -10,17 +10,18 @@ import java.awt.event.MouseListener;
 public class KeyHandler implements KeyListener, MouseListener, ActionListener {
     Game game;
     public int mouseX, mouseY;
+    int ButtonX, ButtonY, buttonWidth, buttonHeight;
     public boolean mouseClicked = false;
     public boolean canShoot = true;
     public int shootCooldown = 0;
 
-    public KeyHandler(Game game){
+    public KeyHandler(Game game) {
         this.game = game;
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
-        
+
     }
 
     @Override
@@ -30,7 +31,7 @@ public class KeyHandler implements KeyListener, MouseListener, ActionListener {
         // System.out.println(code);
 
         // if (code == KeyEvent.VK_W) {
-        //     upPressed = true;
+        // upPressed = true;
         // }
     }
 
@@ -41,15 +42,77 @@ public class KeyHandler implements KeyListener, MouseListener, ActionListener {
         // System.out.println(code);
 
         // if (code == KeyEvent.VK_W) {
-        //     upPressed = false;
+        // upPressed = false;
         // }
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        // mouseX = e.getX();
-        // mouseY = e.getY();
-        // System.out.println("Mouse Clicked at (" + e.getX() + ", " + e.getY() + ")");
+        mouseX = e.getX();
+        mouseY = e.getY();
+        if (game.gameState == game.titleState) {
+            ButtonX = game.screenWidth - 820;
+            ButtonY = game.screenHeight - 300;
+            buttonWidth = 290;
+            buttonHeight = 20;
+
+            if (mouseX >= ButtonX && mouseX <= ButtonX + buttonWidth && mouseY >= ButtonY - game.tileSize
+                    && mouseY <= ButtonY + buttonHeight) {
+                game.gameState = game.diffState;
+            }
+            mouseClicked = false;
+
+            ButtonX += 20;
+            ButtonY += 100;
+            buttonWidth -= 40;
+            if (mouseX >= ButtonX && mouseX <= ButtonX + buttonWidth && mouseY >= ButtonY - game.tileSize
+                    && mouseY <= ButtonY + buttonHeight) {
+                System.exit(0);
+            }
+            mouseClicked = false;
+
+        } else if (game.gameState == game.diffState) {
+            ButtonX = game.screenWidth - 1050;
+            ButtonY = game.screenHeight / 2;
+            buttonWidth = 150;
+            buttonHeight = 20;
+
+            if (mouseX >= ButtonX && mouseX <= ButtonX + buttonWidth && mouseY >= ButtonY - game.tileSize
+                    && mouseY <= ButtonY + buttonHeight) {
+                game.gameState = game.easyState;
+                game.aSetter.setObject1();
+            }
+            mouseClicked = false;
+
+            ButtonX += 300;
+
+            if (mouseX >= ButtonX && mouseX <= ButtonX + buttonWidth && mouseY >= ButtonY - game.tileSize
+                    && mouseY <= ButtonY + buttonHeight) {
+                game.gameState = game.normalState;
+                game.aSetter.setObject2();
+            }
+            mouseClicked = false;
+
+            ButtonX += 350;
+            if (mouseX >= ButtonX && mouseX <= ButtonX + buttonWidth && mouseY >= ButtonY - game.tileSize
+                    && mouseY <= ButtonY + buttonHeight) {
+                game.gameState = game.hardState;
+                game.aSetter.setObject3();
+            }
+            mouseClicked = false;
+
+        } else if (game.gameState == game.endState) {
+            ButtonX = game.screenWidth - 850;
+            ButtonY = (game.screenHeight / 2) + (game.tileSize * 3);
+            buttonWidth = 350;
+            buttonHeight = 20;
+
+            if (mouseX >= ButtonX && mouseX <= ButtonX + buttonWidth && mouseY >= ButtonY - game.tileSize
+                    && mouseY <= ButtonY + buttonHeight) {
+                game.setupGame();
+            }
+            mouseClicked = false;
+        }
     }
 
     @Override
@@ -84,6 +147,6 @@ public class KeyHandler implements KeyListener, MouseListener, ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("hello");
+
     }
 }

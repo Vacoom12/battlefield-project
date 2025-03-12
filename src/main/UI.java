@@ -51,7 +51,7 @@ public class UI {
             drawTitleScreen();
         } else if(game.gameState == game.diffState){
             drawDiff();
-        } else if (game.gameState == game.playState) {
+        } else if (game.gameState == game.playState  || game.gameState == game.easyState || game.gameState == game.normalState || game.gameState == game.hardState) {
             drawGameContent();
         } else if (game.gameState == game.endState) {
             drawEndScreen();
@@ -101,8 +101,8 @@ public class UI {
     public void drawGameContent() {
         g2.setFont(arial_40);
         g2.setColor(Color.white);
-        g2.drawString("Ammo : " + game.ammo, 888, 88);
-        g2.drawString("Enemy : " +  game.totalUnit, 1128, 88);
+        g2.drawString("Ammo : " + game.ammo, 788, 88);
+        g2.drawString("Enemy : " +  game.totalUnit, 1028, 88);
     }
 
     public void drawEndScreen() {
@@ -114,6 +114,7 @@ public class UI {
         if (gameWon) {
             result = "VICTORY";
             g2.drawString(result, getXCenter(result), game.screenHeight / 2);
+            g2.drawString(message2, getXCenter(message2), game.screenHeight / 2 + (game.tileSize * 3));
         } else {
             result = "DEFEAT";
             message1 = String.valueOf(game.totalUnit) + " LEFT";
