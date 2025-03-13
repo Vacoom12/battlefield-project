@@ -6,6 +6,7 @@ import src.units.*;
 public class AssetSetter {
     Game game;
     public ArrayList<int[]> occupiedUnits = new ArrayList<>();
+    String fireStatus = "ally_turret";
 
     public AssetSetter(Game game) {
         this.game = game;
@@ -25,12 +26,11 @@ public class AssetSetter {
         for (int[] occupied : occupiedUnits) {
             int ox = occupied[0], oy = occupied[1], ow = occupied[2], oh = occupied[3];
 
-            // Check if new unit overlaps with an existing one
             if (newX < ox + ow * game.tileSize &&
                 newX + width * game.tileSize > ox &&
                 newY < oy + oh * game.tileSize &&
                 newY + height * game.tileSize > oy) {
-                return true; // Overlapping detected
+                return true; 
             }
         }
         return false;
@@ -46,21 +46,35 @@ public class AssetSetter {
 
         unit.x = x;
         unit.y = y;
-        occupiedUnits.add(new int[]{x, y, sizeX, sizeY, unit.health}); // Store the occupied unit infos
+        occupiedUnits.add(new int[]{x, y, sizeX, sizeY, unit.health}); 
     }
 
     public void setAlly() {
         game.allyObj[0] = new AllySoldier(game);
-        game.allyObj[0].x = 8 * game.tileSize;
+        game.allyObj[0].x = 3 * game.tileSize;
         game.allyObj[0].y = 3 * game.tileSize;
 
         game.allyObj[1] = new AllySoldier(game);
-        game.allyObj[1].x = 10 * game.tileSize;
-        game.allyObj[1].y = 14 * game.tileSize;
+        game.allyObj[1].x = 3 * game.tileSize;
+        game.allyObj[1].y = 12 * game.tileSize;
 
-        game.allyObj[2] = new AllyTurret(game);
-        game.allyObj[2].x = 5 * game.tileSize;
-        game.allyObj[2].y = 8 * game.tileSize;
+        game.allyObj[2] = new AllySoldier(game);
+        game.allyObj[2].x = 1 * game.tileSize;
+        game.allyObj[2].y = 7 * game.tileSize;
+
+        game.allyObj[3] = new AllySoldier(game);
+        game.allyObj[3].x = 1 * game.tileSize;
+        game.allyObj[3].y = 9 * game.tileSize;
+
+        fireStatus = (game.keyH.canShoot) ? "ally_turret" : "ally_turret_fire";
+
+        game.allyObj[4] = new AllyTurret(game, fireStatus);
+        game.allyObj[4].x = 3 * game.tileSize;
+        game.allyObj[4].y = 5 * game.tileSize;
+
+        game.allyObj[5] = new AllyTurret(game, fireStatus);
+        game.allyObj[5].x = 3 * game.tileSize;
+        game.allyObj[5].y = 9 * game.tileSize;
     }
 
     public void setObject1() {
@@ -99,7 +113,7 @@ public class AssetSetter {
         game.obj[1] = new Soldier(game);
         placeUnit(game.obj[1], game.obj[1].sizeX, game.obj[1].sizeY);
     
-        game.obj[2] = new Soldier(game);
+        game.obj[2] = new Turret(game);
         placeUnit(game.obj[2], game.obj[2].sizeX, game.obj[2].sizeY);
     
         game.obj[3] = new Turret(game);

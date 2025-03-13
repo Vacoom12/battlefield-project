@@ -10,6 +10,8 @@ public class AllySoldier extends Unit {
 
     public AllySoldier(Game game) {
         name = "AllySoldier";
+        sizeX = 1;
+        sizeY = 1;
 
         try {
             image = ImageIO.read(getClass().getResourceAsStream("/src/res/sprites/ally_soldier.png"));

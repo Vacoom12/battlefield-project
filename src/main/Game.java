@@ -25,11 +25,11 @@ public class Game extends JPanel implements Runnable {
     public int gameState;
     public final int titleState = 0;
     public final int diffState = 1;
+    public final int playState = 2;
+    public final int endState = 3;
     public final int easyState = 4;
     public final int normalState = 5;
     public final int hardState = 6;
-    public final int playState = 2;
-    public final int endState = 3;
     
     Thread gameThread;
     int FPS = 60;
@@ -41,7 +41,7 @@ public class Game extends JPanel implements Runnable {
     Sound sfx = new Sound();
     public boolean gameWon = false;
     
-    public Unit[] allyObj = new Unit[5];
+    public Unit[] allyObj = new Unit[6];
     public Unit[] obj;
     public int totalUnit;
     public int ammo;
@@ -62,7 +62,7 @@ public class Game extends JPanel implements Runnable {
         gameWon = false;
         obj = new Unit[10];
         crossList = new ArrayList<>();
-        aSetter.setAlly();
+        // aSetter.setAlly();
         playMusic(0);
     }
 
@@ -102,10 +102,10 @@ public class Game extends JPanel implements Runnable {
     }
 
     public void update() {
-        if (gameState == playState  || gameState == easyState || gameState == normalState || gameState == hardState)
+        if (gameState != titleState && gameState != endState && gameState != diffState) {
             tileM.update();
-        
-       
+            aSetter.setAlly();
+        }
     }
 
     public void paintComponent(Graphics g) {
@@ -122,15 +122,16 @@ public class Game extends JPanel implements Runnable {
                 if (ally != null)
                     ally.draw(g2, this);
             }
-
+            
             for (Unit enemy : obj) {
                 if (enemy != null && enemy.isDestroy)
-                    enemy.draw(g2, this);
+                enemy.draw(g2, this);
             }
-
-            for (Cross cross : crossList) 
+            
+            for (Cross cross : crossList) {
                 cross.draw(g2, this);
-
+            }
+            
             ui.draw(g2);
         }
 

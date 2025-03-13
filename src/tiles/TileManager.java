@@ -109,8 +109,9 @@ public class TileManager {
 
     public void update() {
         keyH.shootCooldown++;;
-        if (keyH.shootCooldown > 1) {
-            if (!keyH.canShoot) keyH.canShoot = true;
+        if (keyH.shootCooldown > 60) {
+            if (!keyH.canShoot) 
+                keyH.canShoot = true;
             keyH.shootCooldown = 0;
         }
 
