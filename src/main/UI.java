@@ -85,8 +85,8 @@ public class UI {
         g2.drawString(e, game.screenWidth-1050, (game.screenHeight/2) + 30);
         g2.drawImage(unit[0], game.screenWidth-1030, (game.screenHeight/2) - 150, 100, 100, null);
 
-        g2.drawString(n, game.screenWidth-750, (game.screenHeight/2) + 30);
-        g2.drawImage(unit[1], game.screenWidth-700, (game.screenHeight/2) - 150, 100, 100, null);
+        g2.drawString(n, game.screenWidth-770, (game.screenHeight/2) + 30);
+        g2.drawImage(unit[1], game.screenWidth-720, (game.screenHeight/2) - 150, 100, 100, null);
 
         g2.drawString(h, game.screenWidth-400, (game.screenHeight/2) + 30);
         g2.drawImage(unit[2], game.screenWidth-400, (game.screenHeight/2) - 145, 150, 100, null);
