@@ -14,6 +14,7 @@ public class Unit {
     public String name;
     public boolean isDestroy;
     public BufferedImage image;
+    public String fireStatus;
     UtilityTool uTool = new UtilityTool();
 
     public void draw(Graphics2D g2, Game game) {

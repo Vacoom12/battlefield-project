@@ -124,7 +124,6 @@ public class TileManager {
                 int se = 1;
                 game.ammo--;
 
-
                 for (Unit obj : game.obj) {
                     if (obj != null) {     
                         unitX = obj.x / game.tileSize;

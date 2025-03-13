@@ -21,8 +21,8 @@ public class UI {
     
     public UI(Game game) {
         this.game = game;
-        // src\res\font\Pixel Madness.ttf
-        InputStream is = getClass().getResourceAsStream("/src/res/font/Pixel Madness.ttf");
+
+        InputStream is = getClass().getResourceAsStream("/src/res/font/Pixel_Madness.ttf");
         try {
             pixelFont = Font.createFont(Font.TRUETYPE_FONT, is);
         } catch (FontFormatException | IOException e) {
@@ -100,9 +100,6 @@ public class UI {
         String A = "Ammo : " + game.ammo, E = "Enemy : " + game.totalUnit;
         g2.drawString(A, 650, 88);
         g2.drawString(E, 990, 88);
-
-        // g2.drawString("Ammo : " + game.ammo, 788, 88);
-        // g2.drawString("Enemy : " + game.totalUnit, 1028, 88);
     }
 
     public void drawEndScreen() {

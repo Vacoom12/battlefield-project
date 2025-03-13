@@ -8,13 +8,14 @@ import javax.imageio.ImageIO;
 public class AllyTurret extends Unit {
     Game game;
 
-    public AllyTurret(Game game, String imageName) {
+    public AllyTurret(Game game) {
         name = "AllyTurret";
+        fireStatus = (game.keyH.canShoot) ? "ally_turret" : "ally_turret_fire";
         sizeX = 2;
         sizeY = 2;
 
         try {
-            image = ImageIO.read(getClass().getResourceAsStream("/src/res/sprites/" + imageName + ".png"));
+            image = ImageIO.read(getClass().getResourceAsStream("/src/res/sprites/" + fireStatus + ".png"));
             uTool.scaleImage(image, game.tileSize, game.tileSize);
         } catch (IOException e) {
             e.printStackTrace();

@@ -26,24 +26,12 @@ public class KeyHandler implements KeyListener, MouseListener, ActionListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        // int code = e.getKeyCode();
 
-        // System.out.println(code);
-
-        // if (code == KeyEvent.VK_W) {
-        // upPressed = true;
-        // }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        // int code = e.getKeyCode();
 
-        // System.out.println(code);
-
-        // if (code == KeyEvent.VK_W) {
-        // upPressed = false;
-        // }
     }
 
     @Override
@@ -93,7 +81,7 @@ public class KeyHandler implements KeyListener, MouseListener, ActionListener {
             if (mouseX >= ButtonX && mouseX <= ButtonX + buttonWidth && mouseY >= ButtonY - game.tileSize
                     && mouseY <= ButtonY + buttonHeight) {
                 game.gameState = game.easyState;
-                game.aSetter.setObject1();
+                game.aSetter.setEasyObj();
             }
             mouseClicked = false;
 
@@ -102,7 +90,7 @@ public class KeyHandler implements KeyListener, MouseListener, ActionListener {
             if (mouseX >= ButtonX && mouseX <= ButtonX + buttonWidth && mouseY >= ButtonY - game.tileSize
                     && mouseY <= ButtonY + buttonHeight) {
                 game.gameState = game.normalState;
-                game.aSetter.setObject2();
+                game.aSetter.setNormalObj();
             }
             mouseClicked = false;
 
@@ -110,7 +98,7 @@ public class KeyHandler implements KeyListener, MouseListener, ActionListener {
             if (mouseX >= ButtonX && mouseX <= ButtonX + buttonWidth && mouseY >= ButtonY - game.tileSize
                     && mouseY <= ButtonY + buttonHeight) {
                 game.gameState = game.hardState;
-                game.aSetter.setObject3();
+                game.aSetter.setHardObj();
             }
             mouseClicked = false;
 

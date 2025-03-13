@@ -66,18 +66,16 @@ public class AssetSetter {
         game.allyObj[3].x = 1 * game.tileSize;
         game.allyObj[3].y = 9 * game.tileSize;
 
-        fireStatus = (game.keyH.canShoot) ? "ally_turret" : "ally_turret_fire";
-
-        game.allyObj[4] = new AllyTurret(game, fireStatus);
+        game.allyObj[4] = new AllyTurret(game);
         game.allyObj[4].x = 3 * game.tileSize;
         game.allyObj[4].y = 5 * game.tileSize;
 
-        game.allyObj[5] = new AllyTurret(game, fireStatus);
+        game.allyObj[5] = new AllyTurret(game);    
         game.allyObj[5].x = 3 * game.tileSize;
         game.allyObj[5].y = 9 * game.tileSize;
     }
 
-    public void setObject1() {
+    public void setEasyObj() {
         game.totalUnit = 7;
         game.ammo = 100;
     
@@ -103,7 +101,7 @@ public class AssetSetter {
         placeUnit(game.obj[6], game.obj[6].sizeX, game.obj[6].sizeY);
     }
 
-    public void setObject2() {
+    public void setNormalObj() {
         game.totalUnit = 8;
         game.ammo = 80;
     
@@ -132,7 +130,7 @@ public class AssetSetter {
         placeUnit(game.obj[7], game.obj[7].sizeX, game.obj[7].sizeY);
     }
 
-    public void setObject3() {
+    public void setHardObj() {
         game.totalUnit = 10;
         game.ammo = 75;
     
@@ -166,6 +164,4 @@ public class AssetSetter {
         game.obj[9] = new HeavyTank(game);
         placeUnit(game.obj[9], game.obj[9].sizeX, game.obj[9].sizeY);
     }
-
-    
 }
