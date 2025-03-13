@@ -102,9 +102,9 @@ public class Game extends JPanel implements Runnable {
     }
 
     public void update() {
-        if (gameState == playState  || gameState == easyState || gameState == normalState || gameState == hardState) {
+        if (gameState == playState  || gameState == easyState || gameState == normalState || gameState == hardState)
             tileM.update();
-        } 
+        
        
     }
 
