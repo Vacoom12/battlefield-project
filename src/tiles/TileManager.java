@@ -43,6 +43,7 @@ public class TileManager {
         setup(8, "CornerTR");
         setup(9, "CornerBL");
         setup(10, "CornerBR");
+        setup(11, "brush");
     }
 
     public void setup(int index, String imageName) {
