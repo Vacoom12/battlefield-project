@@ -86,9 +86,9 @@ public class KeyHandler implements KeyListener, MouseListener, ActionListener {
 
         } else if (game.gameState == game.diffState) {
             ButtonX = game.screenWidth - 1050;
-            ButtonY = (game.screenHeight / 2) + 25;
+            ButtonY = game.screenHeight - 500;
             buttonWidth = 150;
-            buttonHeight = 20;
+            buttonHeight = 150;
 
             if (mouseX >= ButtonX && mouseX <= ButtonX + buttonWidth && mouseY >= ButtonY - game.tileSize
                     && mouseY <= ButtonY + buttonHeight) {
