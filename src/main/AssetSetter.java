@@ -13,13 +13,13 @@ public class AssetSetter {
     }
 
     public int RandomPosX(int sizeX) {
-         //12-26
-        return (int) (Math.random() * (16 - sizeX)) + 12;
+         //11-25
+        return (int) (Math.random() * (16 - sizeX)) + 11;
     }
 
     public int RandomPosY(int sizeY) {
          //3-12
-         return (int) (Math.random() * (10 - sizeY)) + 3;
+         return (int) (Math.random() * (11 - sizeY)) + 3;
     }
 
     public boolean isOverlap(int newX, int newY, int width, int height) {
