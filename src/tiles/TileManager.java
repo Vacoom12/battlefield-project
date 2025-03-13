@@ -1,16 +1,15 @@
 package src.tiles;
 
+import java.awt.Graphics2D;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.awt.Graphics2D;
 import javax.imageio.ImageIO;
-
+import src.entities.Cross;
+import src.main.AssetSetter;
 import src.main.Game;
 import src.main.KeyHandler;
 import src.main.UtilityTool;
-import src.entities.Cross;
-import src.main.AssetSetter;
 import src.units.*;
 
 public class TileManager {
@@ -108,8 +107,8 @@ public class TileManager {
     }
 
     public void update() {
-        keyH.shootCooldown++;;
-        if (keyH.shootCooldown > 60) {
+        keyH.shootCooldown++;
+        if (keyH.shootCooldown > 30) {
             if (!keyH.canShoot) 
                 keyH.canShoot = true;
             keyH.shootCooldown = 0;
