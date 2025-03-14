@@ -114,11 +114,11 @@ public class TileManager {
                 keyH.canShoot = true;
             keyH.shootCooldown = 0;
         }
-
+        
         if (keyH.mouseClicked && keyH.canShoot) {
             int tileX = keyH.mouseX / game.tileSize;
             int tileY = keyH.mouseY / game.tileSize;
-    
+            
             if (tileX >= 0 && tileX < game.maxWorldCol && tileY >= 0 && tileY < game.maxWorldRow && mapTilePos[tileX][tileY] == 1 && mapTilePos[tileX][tileY] != 2) {
                 mapTilePos[tileX][tileY] = 2;
                 int unitX, unitY;

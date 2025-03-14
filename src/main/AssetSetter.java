@@ -77,7 +77,7 @@ public class AssetSetter {
 
     public void setEasyObj() {
         game.totalUnit = 7;
-        game.ammo = 100;
+        game.ammo = 110;
     
         game.obj[0] = new Soldier(game);
         placeUnit(game.obj[0], game.obj[0].sizeX, game.obj[0].sizeY);
@@ -103,7 +103,7 @@ public class AssetSetter {
 
     public void setNormalObj() {
         game.totalUnit = 8;
-        game.ammo = 80;
+        game.ammo = 100;
     
         game.obj[0] = new Soldier(game);
         placeUnit(game.obj[0], game.obj[0].sizeX, game.obj[0].sizeY);
@@ -132,7 +132,7 @@ public class AssetSetter {
 
     public void setHardObj() {
         game.totalUnit = 10;
-        game.ammo = 75;
+        game.ammo = 80;
     
         game.obj[0] = new Soldier(game);
         placeUnit(game.obj[0], game.obj[0].sizeX, game.obj[0].sizeY);
