@@ -161,10 +161,11 @@ public class TileManager {
                     game.gameState = game.endState;
                     game.playSE(5);
                 }
+
+                keyH.canShoot = false;
             }
 
             keyH.shootCooldown = 0;
-            keyH.canShoot = false;
             keyH.mouseClicked = false;
         }
     }

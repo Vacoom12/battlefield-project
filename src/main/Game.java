@@ -59,6 +59,7 @@ public class Game extends JPanel implements Runnable {
     public void setupGame() {
         gameState = titleState;
         tileM = new TileManager(this, keyH, aSetter);
+        keyH.canShoot = true;
         aSetter.occupiedUnits.clear();
         gameWon = false;
         obj = new Unit[10];
