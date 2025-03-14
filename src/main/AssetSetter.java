@@ -77,7 +77,7 @@ public class AssetSetter {
 
     public void setEasyObj() {
         game.totalUnit = 7;
-        game.ammo = 110;
+        game.ammo = 2;
     
         game.obj[0] = new Soldier(game);
         placeUnit(game.obj[0], game.obj[0].sizeX, game.obj[0].sizeY);
